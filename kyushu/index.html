@@ -1,0 +1,880 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>九州冬旅行程・展示版</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 博多織の帯 header → sticky day tabs → timeline (left) + illustrated Kyushu map (right, sticky); one column with 行程/地圖 toggle on phones */
+:root{
+  --paper:#ECEFF1;      /* 淡藍の和紙 */
+  --card:#FBFCFC;
+  --ink:#17203A;        /* 墨・紺 */
+  --ink-2:#56607A;
+  --line:#CBD2DA;
+  --ai:#25487D;         /* 藍 */
+  --shu:#C4422B;        /* 鳥居の朱 */
+  --kin:#B9862A;        /* 金茶 */
+  --land:#E5DFD0;
+  --sea:#D6E1E8;
+  --wave:#C3D2DC;
+  --d1:#1F3263; --d2:#C4422B; --d3:#B9862A; --d4:#25487D; --d5:#6B4A8E; --d6:#3F8463; --d7:#9A6634;
+  --on-accent:#FFFFFF;
+  --f-display:"Shippori Mincho B1","Noto Serif TC","Hiragino Mincho ProN","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Hiragino Sans","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1528; --card:#182038; --ink:#ECE6D7; --ink-2:#A3ABC2; --line:#2B3654;
+    --ai:#86A8DE; --shu:#E86A50; --kin:#E2B25A; --land:#1F2843; --sea:#121A31; --wave:#1B2643;
+    --d1:#8EA3E0; --d2:#E86A50; --d3:#E2B25A; --d4:#6FA0E6; --d5:#B595DE; --d6:#6FC296; --d7:#D9A06A;
+    --on-accent:#10162A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1528; --card:#182038; --ink:#ECE6D7; --ink-2:#A3ABC2; --line:#2B3654;
+  --ai:#86A8DE; --shu:#E86A50; --kin:#E2B25A; --land:#1F2843; --sea:#121A31; --wave:#1B2643;
+  --d1:#8EA3E0; --d2:#E86A50; --d3:#E2B25A; --d4:#6FA0E6; --d5:#B595DE; --d6:#6FC296; --d7:#D9A06A;
+  --on-accent:#10162A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+
+/* ── 博多織 献上柄の帯 ── */
+.obi{display:block;width:100%;height:30px;color:var(--ai)}
+.obi .k1{fill:var(--ai)} .obi .k2{fill:var(--shu)} .obi .k3{fill:var(--kin)} .obi .bg{fill:var(--paper)}
+
+header.hero{padding-block:22px 18px}
+.hero-row{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,7vw,56px);line-height:1.08;margin:6px 0 8px;letter-spacing:.02em;text-wrap:balance}
+h1 small{display:block;font-size:.42em;font-weight:600;letter-spacing:.18em;color:var(--ink-2);margin-top:8px}
+h1 small span{white-space:nowrap}
+.hero-row{position:relative}
+@media (max-width:600px){
+  .hero-row > div:first-child{padding-right:64px}
+  .hanko{position:absolute;right:0;top:0;width:54px;height:54px;font-size:18px;border-width:2.5px}
+  h1{font-size:29px}
+  h1 small{letter-spacing:.08em;font-size:14px}
+}
+.hanko{flex:none;width:76px;height:76px;border:3px solid var(--shu);border-radius:8px;color:var(--shu);display:grid;place-items:center;transform:rotate(-6deg);font-family:var(--f-display);font-weight:800;font-size:25px;line-height:1.02;text-align:center;writing-mode:vertical-rl;letter-spacing:.06em;opacity:.92;margin-top:6px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--ink-2);font-size:14px}
+.meta b{color:var(--ink);font-weight:700;font-family:var(--f-mono);font-size:15px}
+.countdown{font-family:var(--f-display);font-weight:800;color:var(--shu)}
+
+/* ── sticky bar ── */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px 6px 8px;display:flex;align-items:center;gap:8px;line-height:1.15;text-align:left}
+.tab .kj{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:16px;color:var(--on-accent);background:var(--c)}
+.tab .t1{font-family:var(--f-mono);font-size:13px;font-weight:500}
+.tab .t2{font-size:11.5px;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--c);border-color:var(--c);color:var(--on-accent)}
+.tab[aria-selected="true"] .t2{color:var(--on-accent);opacity:.85}
+.tab[aria-selected="true"] .kj{background:var(--on-accent);color:var(--c)}
+.tab.all .kj{background:var(--ink);color:var(--paper)}
+.tab.all{--c:var(--ink)}
+.viewtoggle{display:none;gap:6px;padding-bottom:10px}
+.viewtoggle button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 0;font-weight:500}
+.viewtoggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ── main grid ── */
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:28px;padding-block:22px 60px}
+.col-map{position:sticky;top:calc(env(safe-area-inset-top,0px) + 78px);align-self:start}
+@media (max-width:880px){
+  main{grid-template-columns:minmax(0,1fr)}
+  .viewtoggle{display:flex}
+  .col-map{position:static}
+  body[data-view="list"] .col-map{display:none}
+  body[data-view="map"] .col-list{display:none}
+}
+
+/* ── day header ── */
+.dayhead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;margin-bottom:18px}
+.daykanji{width:68px;height:68px;border-radius:50%;background:var(--c);color:var(--on-accent);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:34px}
+.dayhead h2{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,4.4vw,32px);margin:0;line-height:1.2;text-wrap:balance}
+.dayhead .d{font-family:var(--f-mono);color:var(--ink-2);font-size:13px;letter-spacing:.06em}
+.facts{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0 0 22px;padding:0;list-style:none}
+.facts li{font-size:13px;border:1px dashed var(--line);border-radius:6px;padding:4px 10px;color:var(--ink-2)}
+.facts li b{color:var(--ink);font-weight:500}
+
+/* ── timeline ── */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.stop{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px;position:relative}
+.stop .time{font-family:var(--f-mono);font-size:14px;font-weight:500;padding-top:16px;text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.stop .time span{display:block;font-size:10.5px;color:var(--ink-2);letter-spacing:.05em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px 14px 18px;position:relative;overflow:hidden;transition:opacity .25s}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:repeating-linear-gradient(180deg,var(--c) 0 10px,transparent 10px 13px)}
+.card.sel{box-shadow:0 0 0 2px var(--c)}
+.chead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.num{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--c);color:var(--c);font-family:var(--f-mono);font-size:12px;display:grid;place-items:center;font-weight:500;margin-top:3px}
+.card h3{font-family:var(--f-display);font-weight:800;font-size:19px;line-height:1.3;margin:0}
+.card .jp{font-size:12.5px;color:var(--ink-2);margin-top:1px}
+.card p{margin:8px 0 0;font-size:14.5px;max-width:62ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.chip{font-size:11.5px;border-radius:4px;padding:1px 8px;border:1px solid var(--line);color:var(--ink-2)}
+.chip.t{border-color:var(--c);color:var(--c);font-weight:500}
+.tips{margin:10px 0 0;padding:10px 0 0;border-top:1px dashed var(--line);list-style:none;font-size:13.5px;color:var(--ink-2);display:grid;gap:3px}
+.tips li{padding-left:1.1em;text-indent:-1.1em}
+.tips li::before{content:"・";color:var(--c);font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.acts a,.acts button{font-size:12.5px;text-decoration:none;border:1px solid var(--line);background:transparent;border-radius:6px;padding:4px 10px;display:inline-flex;gap:5px;align-items:center}
+.acts a.go{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.acts a:hover,.acts button:hover{border-color:var(--ink)}
+.acts .done{margin-left:auto}
+.stamp{position:absolute;right:14px;top:10px;width:58px;height:58px;border:2.5px solid var(--shu);border-radius:50%;color:var(--shu);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:26px;transform:rotate(-14deg) scale(.6);opacity:0;pointer-events:none;transition:all .2s}
+.card.is-done .stamp{opacity:.85;transform:rotate(-14deg) scale(1)}
+.card.is-done > *:not(.stamp):not(.notes-box):not(.acts){opacity:.55}
+.move{grid-column:2;font-size:12.5px;color:var(--ink-2);padding:8px 0 8px 18px;margin-left:4px;border-left:2px dotted var(--line);display:flex;gap:6px;align-items:center}
+.move .mv{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border-radius:3px;padding:0 5px;color:var(--ink)}
+
+/* ── map ── */
+.mapcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.maphead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);gap:10px}
+.maphead .ttl{font-family:var(--f-display);font-weight:800;font-size:16px}
+.maphead button{border:1px solid var(--line);background:transparent;border-radius:6px;padding:3px 10px;font-size:12.5px}
+#map{display:block;width:100%;aspect-ratio:1/1;max-width:100%;touch-action:manipulation}
+#map .land{fill:var(--land);stroke:var(--ink-2);stroke-width:1.1;stroke-linejoin:round}
+#map .seawave{fill:none;stroke:var(--wave);stroke-width:1}
+#map .lbl-sea{fill:var(--ai);opacity:.55;font-family:var(--f-display);font-weight:600}
+#map .lbl-city{fill:var(--ink-2);font-family:var(--f-display);font-weight:600}
+#map .lbl-mtn{fill:var(--ink-2);font-family:var(--f-body)}
+#map .mtn{fill:none;stroke:var(--ink-2);stroke-linejoin:round}
+#map .route{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#map .pin{cursor:pointer}
+#map .pin text{font-family:var(--f-mono);font-weight:500;fill:var(--on-accent);pointer-events:none}
+#map .plabel{font-family:var(--f-body);font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-linejoin:round}
+.mapnote{padding:12px 14px;border-top:1px solid var(--line);font-size:13.5px;min-height:64px}
+.mapnote .nm{font-family:var(--f-display);font-weight:800;font-size:16px}
+.mapnote .sub{color:var(--ink-2);font-size:12.5px}
+.mapnote a{display:inline-block;margin-top:6px;font-size:12.5px;text-decoration:none;background:var(--ink);color:var(--paper);border-radius:6px;padding:3px 10px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;padding:10px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+
+/* ── overview ── */
+.ov-days{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:10px}
+.ov-day{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;text-align:left;width:100%}
+.ov-day:hover{border-color:var(--c)}
+.ov-day .daykanji{width:50px;height:50px;font-size:24px}
+.ov-day .dt{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2)}
+.ov-day .ar{font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1.3}
+.ov-day .rt{font-size:13px;color:var(--ink-2);line-height:1.5;margin-top:2px}
+h2.sec{font-family:var(--f-display);font-weight:800;font-size:22px;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+h2.sec::after{content:"";flex:1;height:0;border-top:1px solid var(--line)}
+.flights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:30px}
+.ticket{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:grid;gap:4px;position:relative}
+.ticket::after{content:"";position:absolute;right:86px;top:10px;bottom:10px;border-left:1px dashed var(--line)}
+.ticket .code{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);letter-spacing:.08em}
+.ticket .route{font-family:var(--f-mono);font-size:22px;font-weight:500;display:flex;gap:10px;align-items:baseline}
+.ticket .route small{font-size:12px;color:var(--ink-2)}
+.ticket .when{font-size:13px;color:var(--ink-2)}
+.ticket .side{position:absolute;right:14px;top:14px;width:62px;text-align:center;font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--shu);line-height:1.3}
+.stays{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:30px}
+.stays-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:30px}
+.stays-wrap .stays{margin:0}
+.stays th,.stays td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.stays tr:last-child td{border-bottom:0}
+.stays th{font-size:12px;color:var(--ink-2);font-weight:500}
+.stays td.n{font-family:var(--f-mono);white-space:nowrap}
+.stays .assume{font-size:11.5px;color:var(--kin);display:block}
+.notes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.notes li{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;font-size:13.5px;color:var(--ink-2)}
+.notes li b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px;font-family:var(--f-display);font-weight:800}
+footer{color:var(--ink-2);font-size:12px;padding-block:0 40px}
+.demo-note{font-size:13px;color:var(--ink-2);border:1px dashed var(--kin);border-radius:8px;padding:8px 12px;margin-bottom:14px}
+
+/* ── shared mode ── */
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:1px 10px 1px 8px;color:var(--ink-2)}
+.sync::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ink-2)}
+.sync.on{color:var(--ink)} .sync.on::before{background:var(--d6)}
+.sync.wait::before{background:var(--kin)}
+.sync.ro::before{background:var(--ai)}
+.chip.mod{border-style:dashed;color:var(--ink-2)}
+.who{font-weight:700;color:var(--ink)}
+.notes-box{margin-top:10px}
+.nlist{list-style:none;margin:0;padding:8px 10px;display:grid;gap:6px;background:var(--paper);border-radius:6px;font-size:13.5px}
+.nlist li{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:4px 8px;align-items:baseline}
+.nlist .ntext{min-width:0;overflow-wrap:anywhere}
+.nlist .nt{font-size:11px;color:var(--ink-2);font-family:var(--f-mono)}
+.ndel{border:0;background:transparent;color:var(--ink-2);font-size:15px;line-height:1;padding:0 2px}
+.ndel:hover{color:var(--shu)}
+.nform{display:flex;gap:6px;margin-top:8px}
+.nform input{flex:1;min-width:0}
+.editform input,.editform textarea,.nform input{font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 9px}
+.editform textarea{resize:vertical}
+.editform .frow{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;align-items:start;margin-bottom:8px}
+.editform label{font-size:12.5px;color:var(--ink-2);padding-top:7px}
+.acts .primary,.nform .primary{background:var(--shu);border:1px solid var(--shu);color:var(--on-accent);border-radius:6px;padding:4px 12px;font-size:12.5px}
+.acts .danger{color:var(--shu);border-color:var(--shu)}
+.acts .danger:last-child{margin-left:auto}
+.donewrap{margin-left:auto;display:inline-flex;gap:8px;align-items:center}
+.doneby{font-size:12px;color:var(--shu)}
+.doneby .who{color:var(--shu)}
+.card .acts .done{margin-left:0}
+.hiddenrow{font-size:13px;color:var(--ink-2);border:1px dashed var(--line);border-radius:var(--radius);padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.hiddenrow b{text-decoration:line-through;font-weight:500}
+.hiddenrow button{margin-left:auto;font-size:12.5px;border:1px solid var(--line);background:transparent;border-radius:6px;padding:3px 10px}
+.addbtn{display:block;width:100%;margin-top:14px;border:1.5px dashed var(--line);background:transparent;border-radius:var(--radius);padding:12px;color:var(--ink-2);font-size:14px}
+.addbtn:hover{border-color:var(--ink);color:var(--ink)}
+.addform{margin-top:14px}
+.ov-day .prog{margin-left:10px;color:var(--shu)}
+.recent{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:8px}
+.recent button{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;text-align:left;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;font-size:13.5px}
+.recent .rk{width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--on-accent);display:grid;place-items:center;font-family:var(--f-display);font-weight:800}
+.recent .rs{color:var(--ink-2);font-size:12.5px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:8px;font-size:13.5px;z-index:20;max-width:calc(100% - 32px);text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg class="obi" aria-hidden="true" preserveAspectRatio="none">
+  <defs>
+    <pattern id="kenjo" width="64" height="30" patternUnits="userSpaceOnUse">
+      <rect class="bg" width="64" height="30"/>
+      <!-- 独鈷 -->
+      <rect class="k1" x="3" y="0" width="2" height="30"/>
+      <rect class="k1" x="7" y="0" width="1" height="30"/>
+      <path class="k1" d="M16 2 L22 9 L16 15 L10 9 Z M16 15 L22 22 L16 29 L10 22 Z"/>
+      <circle class="k3" cx="16" cy="9" r="2"/><circle class="k3" cx="16" cy="22" r="2"/>
+      <rect class="k1" x="24" y="0" width="1" height="30"/>
+      <rect class="k2" x="27" y="0" width="3" height="30"/>
+      <rect class="k1" x="32" y="0" width="1" height="30"/>
+      <!-- 華皿 -->
+      <circle class="k1" cx="44" cy="8" r="5"/><circle class="bg" cx="44" cy="8" r="2"/>
+      <circle class="k1" cx="44" cy="23" r="5"/><circle class="bg" cx="44" cy="23" r="2"/>
+      <rect class="k1" x="55" y="0" width="1" height="30"/>
+      <rect class="k1" x="58" y="0" width="2" height="30"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="30" fill="url(#kenjo)"/>
+</svg>
+
+<header class="hero wrap">
+  <div class="hero-row">
+    <div>
+      <div class="eyebrow">Kyushu · Winter · 6 nights</div>
+      <h1>福岡・九州 冬の旅<small><span>熊本 →</span> <span>博多 →</span> <span>門司港 →</span> <span>由布院 →</span> <span>阿蘇</span></small></h1>
+      <div class="meta">
+        <span><b>7</b> 天 <b>6</b> 夜</span>
+        <span>台中 ⇄ 熊本　來回</span>
+        <span>自駕 <b>DAY 3–7</b></span>
+        <span class="countdown" id="countdown"></span>
+        <span class="sync off" id="sync">打勾只存在這台裝置</span>
+      </div>
+    </div>
+    <div class="hanko" aria-label="博多">博多</div>
+  </div>
+</header>
+<div class="wrap"><div class="demo-note">作品集展示版：已移除實際日期、航班與住宿資訊；原版的多人即時打勾、留言與編輯功能在這裡關閉，打勾只存在你的瀏覽器。</div></div>
+
+<div class="bar">
+  <div class="wrap">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="選擇日期"></nav>
+    <div class="viewtoggle" role="group" aria-label="切換顯示">
+      <button id="vt-list" aria-pressed="true">行程</button>
+      <button id="vt-map" aria-pressed="false">地圖</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="col-list" id="list" aria-live="polite"></section>
+  <aside class="col-map">
+    <div class="mapcard">
+      <div class="maphead"><span class="ttl" id="mapttl">九州全圖</span><button id="mapall">看全圖</button></div>
+      <svg id="map" role="img" aria-label="九州行程地圖"></svg>
+      <div class="mapnote" id="mapnote"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </aside>
+</main>
+
+<footer class="wrap">時間與車程為預估，景點營業時間、火口規制與聖誕市集日期請以當天官方公告為準。這是作品集用的展示版。</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+const WD = '日月火水木金土';
+const DAYS = [
+{ id:'d1', date:'', kanji:'着', area:'抵達熊本', jp:'熊本着', mode:'transit',
+  facts:[['交通','飛機・機場巴士'],['住宿','熊本市區飯店'],['氣溫','熊本夜間約 3–8°C']],
+  stops:[
+  {t:'15:05', tl:'起飛', name:'台中出發', jp:'台中 → 熊本', tags:['航班'], desc:'台中清泉崗機場起飛，日本時間 18:15 抵達阿蘇熊本機場。',
+   tips:['日本比台灣快 1 小時，下飛機記得調手錶','先在 Visit Japan Web 填好入境與海關資料，過關出示 QR code'], move:['', '飛行約 2 小時']},
+  {t:'18:15', tl:'抵達', name:'阿蘇熊本機場', jp:'阿蘇くまもと空港', ll:[130.855,32.837], tags:['機場'],
+   desc:'入境後到巴士站搭機場利木津巴士進市區，坐到「桜町バスターミナル」最近飯店。',
+   tips:['機場巴士約 1 小時，可用 IC 卡或現金','在機場或飯店附近超商先買好明天的水與早餐'], move:['巴士','約 60 分']},
+  {t:'19:30', name:'熊本市區飯店', short:'飯店', jp:'熊本・新市街', ll:[130.7080,32.8025], q:'熊本 新市街', tags:['住宿','連住 2 晚'],
+   desc:'位在新市街拱廊旁，走路到櫻町、熊本城和上下通都很近，這兩天都靠走路。',
+   tips:['住在新市街一帶，這兩天都能走路'], move:['步行','約 5 分']},
+  {t:'20:00', tl:'晚餐', name:'熊本拉麵', jp:'熊本ラーメン', ll:[130.7085,32.8018], q:'熊本ラーメン 新市街', tags:['美食'],
+   desc:'熊本拉麵的特色是豚骨湯加上焦蒜油（マー油），香氣很重。新市街與下通一帶老店很多。',
+   tips:['桂花、黒亭都是在地知名的店','想吃馬肉可以順便找「馬刺し」居酒屋']}
+  ]},
+{ id:'d2', date:'', kanji:'熊', area:'熊本城下町', jp:'熊本城と城下町', mode:'walking',
+  facts:[['交通','全程步行'],['住宿','熊本市區飯店（續住）'],['步行','約 4–5 km']],
+  stops:[
+  {t:'10:00', name:'SAKURA MACHI 熊本', short:'櫻町熊本', jp:'SAKURA MACHI Kumamoto（桜町熊本）', ll:[130.7055,32.8000], tags:['購物','巴士總站'],
+   desc:'熊本市中心的大型商場，樓下是巴士總站。屋頂有大片庭園可以遠眺熊本城。',
+   tips:['館內有熊本熊主題商店，伴手禮可以在這裡一次買','屋頂庭園是拍熊本城的好位置'], move:['步行','約 10 分']},
+  {t:'11:30', name:'櫻之馬場 城彩苑', short:'城彩苑', jp:'桜の馬場 城彩苑', ll:[130.7030,32.8028], tags:['美食','午餐'],
+   desc:'熊本城腳下的江戶風街道，二十多間小吃店與伴手禮店，順便在這裡吃午餐。',
+   tips:['必吃「いきなり団子」：番薯加紅豆的熊本傳統點心','旁邊的「湧々座」可以先看熊本城的歷史'], move:['步行','約 10 分']},
+  {t:'13:00', name:'熊本城', jp:'熊本城', ll:[130.7058,32.8061], tags:['城','觀光'],
+   desc:'日本三名城之一，加藤清正所築。2016 年地震受損後，天守閣已修復開放，城內有架高的特別見學通路可以近看修復中的石垣。',
+   tips:['和湧々座一起買共通券比較划算','天守閣最上層可以看整個熊本市','冬天風大，帶件防風外套'], move:['步行','約 10 分']},
+  {t:'15:30', name:'熊本城稻荷神社', short:'稻荷神社', jp:'熊本城稲荷神社', ll:[130.7038,32.8076], tags:['神社'],
+   desc:'加藤清正入城時奉祀的守護神社，紅色鳥居與白狐，是熊本城旁的小景點。',
+   tips:['可以求開運、商売繁盛的御守'], move:['步行','約 15 分']},
+  {t:'17:00', name:'上通・下通商店街', short:'上下通', jp:'上通・下通アーケード', ll:[130.7092,32.8035], tags:['購物','晚餐'],
+   desc:'熊本最熱鬧的拱廊商店街，有藥妝、服飾和許多餐廳，下雨也不怕。',
+   tips:['晚餐推薦熊本鄉土料理「太平燕」：冬粉湯麵配海鮮蔬菜','回飯店前補貨藥妝']}
+  ]},
+{ id:'d3', date:'', kanji:'博', area:'太宰府・博多中洲', jp:'太宰府と博多', mode:'driving',
+  facts:[['交通','自駕（9:30 取車）'],['住宿','中洲一帶飯店'],['車程','約 2.5 小時']],
+  stops:[
+  {t:'09:30', tl:'取車', name:'租車取車', jp:'レンタカー', tags:['租車'],
+   desc:'在熊本市區取車，開始五天自駕。',
+   tips:['台灣駕照要搭配「日文譯本」（監理站申請），兩份都要帶','確認有 ETC 卡，高速公路收費比較方便','最後一天會上阿蘇高地，問清楚是否為冬季輪胎（スタッドレス）'], move:['開車','依店家位置']},
+  {t:'10:15', name:'COSTCO 好市多', short:'COSTCO', jp:'コストコ', q:'コストコ 熊本', tags:['購物'],
+   desc:'補貨零食與日本限定商品。出發前確認要去哪一間：熊本御船店離市區較近，順路北上則是福岡久山店。',
+   tips:['需要會員卡，台灣好市多會員卡可以通用','冷藏品要考慮接下來幾天放哪裡'], move:['開車','約 1.5 小時（九州道）']},
+  {t:'13:00', name:'太宰府天滿宮', jp:'太宰府天満宮', ll:[130.5353,33.5215], tags:['神社','觀光'],
+   desc:'供奉學問之神菅原道真的總本宮。參道兩旁都是老店，隈研吾設計、木條交錯的星巴克也在這條路上。',
+   tips:['參道必吃「梅ヶ枝餅」，現烤熱熱的最好吃','梅花是福岡縣花，境內有很多梅樹與梅紋','參道附近收費停車場多，假日容易滿'], move:['開車','約 40 分']},
+  {t:'16:00', name:'中洲飯店', short:'飯店', jp:'福岡・中洲', ll:[130.4070,33.5932], q:'福岡 中洲', tags:['住宿','連住 2 晚'],
+   desc:'位在中洲，走路到櫛田神社、運河城、屋台與天神都方便。車停好之後，今晚和明天都用走的。',
+   tips:['先問飯店合作停車場與一晚停車費'], move:['步行','約 8 分']},
+  {t:'16:45', name:'櫛田神社', jp:'櫛田神社', ll:[130.4106,33.5931], tags:['神社'],
+   desc:'博多的總鎮守，也是「博多祇園山笠」祭典的中心。境內全年展示高達十多公尺的華麗「飾り山笠」。',
+   tips:['境內的「靈泉鶴之井戶」據說喝了可以長壽'], move:['步行','約 5 分']},
+  {t:'17:30', name:'博多運河城', short:'運河城', jp:'キャナルシティ博多', ll:[130.4111,33.5898], tags:['購物','夜景'],
+   desc:'一條人工運河穿過整座商場，中庭每半小時一場噴水秀；冬天會有聖誕燈飾與投影演出。',
+   tips:['5 樓「拉麵競技場」集合各地拉麵','天黑後的噴水投影秀比較好看'], move:['步行','約 10 分']},
+  {t:'19:30', name:'中洲屋台', jp:'中洲屋台', ll:[130.4072,33.5914], tags:['美食','晚餐'],
+   desc:'那珂川沿岸一整排路邊攤，是福岡最有代表性的夜景。豚骨拉麵、關東煮、焼きラーメン、明太子玉子燒都有。',
+   tips:['每攤只有 8–10 個位子，人多可以分散排','很多攤只收現金','吃一兩樣就換下一攤，不要久坐','下雨或強風時可能不開']}
+  ]},
+{ id:'d4', date:'', kanji:'天', area:'天神・福岡塔', jp:'天神散策', mode:'walking',
+  facts:[['交通','步行＋巴士（車停飯店）'],['住宿','中洲飯店（續住）'],['氣溫','福岡約 5–12°C']],
+  stops:[
+  {t:'10:00', name:'ACROS 福岡', jp:'アクロス福岡', ll:[130.4023,33.5913], tags:['建築','觀光'],
+   desc:'整面像山坡一樣的階梯式空中花園「ステップガーデン」，從公園這側看最壯觀。',
+   tips:['階梯花園開放時間有限制，冬天傍晚前關閉'], move:['步行','約 2 分']},
+  {t:'11:00', name:'天神中央公園', short:'中央公園', jp:'天神中央公園', ll:[130.4040,33.5902], tags:['公園'],
+   desc:'那珂川旁的都市公園，園內白色洋館「舊福岡縣公會堂貴賓館」是國家重要文化財。',
+   tips:['12 月常有聖誕燈飾，晚上回來也可以'], move:['步行','約 5 分']},
+  {t:'12:00', name:'天神地下街', short:'地下街', jp:'天神地下街', ll:[130.3990,33.5900], tags:['購物','午餐'],
+   desc:'仿 19 世紀歐洲街道的石板地與鑄鐵花紋天花板，約 150 間店，下雨天最適合。',
+   tips:['午餐可以吃明太子料理或博多烏龍麵','地下街直通天神各大百貨'], move:['巴士','約 25 分']},
+  {t:'16:00', name:'福岡塔', jp:'福岡タワー', ll:[130.3515,33.5933], tags:['夜景','觀光'],
+   desc:'234 公尺高的海濱塔，123 公尺高的展望室可以 360 度看博多灣。傍晚上去，夕陽和夜景一次看到。',
+   tips:['12 月日落約 17:15，16:30 前上去最好','旁邊就是百道濱海灘，可以散步'], move:['巴士','約 25 分']},
+  {t:'19:00', tl:'晚餐', name:'博多牛腸鍋／水炊雞鍋', short:'晚餐', jp:'もつ鍋・水炊き', ll:[130.4040,33.5925], q:'もつ鍋 中洲', tags:['美食','晚餐'],
+   desc:'博多兩大名物鍋。冬天最適合，吃到最後加拉麵或雜炊收尾。',
+   tips:['人氣店晚上要先訂位']}
+  ]},
+{ id:'d5', date:'', kanji:'門', area:'北九州・門司港', jp:'門司港レトロ', mode:'driving',
+  facts:[['交通','自駕'],['住宿','門司港飯店'],['車程','約 2 小時']],
+  stops:[
+  {t:'10:00', name:'THE OUTLETS KITAKYUSHU', short:'Outlets', jp:'ジ アウトレット北九州', ll:[130.8090,33.8712], tags:['購物'],
+   desc:'九州北部的大型 Outlet，運動、戶外和日系品牌都很齊全。',
+   tips:['先到服務台出示護照，問有沒有外國旅客優惠券','大件戰利品直接放車上'], move:['開車','約 35 分']},
+  {t:'13:30', name:'門司港懷舊區', short:'門司港', jp:'門司港レトロ', ll:[130.9630,33.9452], tags:['建築','美食'],
+   desc:'明治到大正時期的港口洋館群：門司港車站、舊門司稅關、舊大阪商船，隔著關門海峽就是本州下關。',
+   tips:['名物「焼きカレー」：起司焗烤咖哩飯','藍翼門司（ブルーウイングもじ）跳開橋，定時開合','傍晚的港邊夜景很漂亮'], move:['步行','約 5 分']},
+  {t:'15:30', name:'門司港飯店', short:'飯店', jp:'門司港', ll:[130.9625,33.9447], q:'門司港レトロ', tags:['住宿'],
+   desc:'先 check-in 放行李，晚上再開車去小倉。',
+   tips:['確認飯店停車方式'], move:['開車','約 25 分']},
+  {t:'17:00', name:'小倉城', jp:'小倉城', ll:[130.8740,33.8846], tags:['城','夜景'],
+   desc:'天守閣最上層比下層大的「唐造」造型很少見。晚上會打燈。',
+   tips:['旁邊的小倉城庭園是傳統大名庭園'], move:['步行','就在旁邊']},
+  {t:'18:00', name:'小倉城耶誕市集', short:'耶誕市集', jp:'小倉城クリスマスマーケット', ll:[130.8752,33.8838], q:'小倉城 クリスマスマーケット', tags:['市集','晚餐'],
+   desc:'城下的冬季限定市集，熱紅酒、德國香腸和聖誕小物，配著打燈的小倉城。',
+   tips:['出發前確認今年舉辦日期與時間','開車的人不能喝熱紅酒，可以點無酒精版本','吃完開回門司港約 25 分']}
+  ]},
+{ id:'d6', date:'', kanji:'湯', area:'由布院溫泉', jp:'由布院', mode:'driving',
+  facts:[['交通','自駕'],['住宿','由布院溫泉旅館'],['車程','約 2 小時']],
+  stops:[
+  {t:'09:30', tl:'出發', name:'門司港 → 由布院', jp:'東九州道・大分道', tags:['交通'],
+   desc:'從門司港開往大分的由布院，中途可以在服務區休息。',
+   tips:['山區道路早上可能有霜，慢慢開'], move:['開車','約 2 小時']},
+  {t:'12:00', name:'湯之坪街道', short:'湯之坪街道', jp:'湯の坪街道', ll:[131.3610,33.2652], tags:['美食','購物'],
+   desc:'從由布院車站一路通往金鱗湖的主街，小吃、雜貨、甜點店一間接一間，一邊走一邊吃。',
+   tips:['「B-speak」蛋糕捲很早就賣完','金賞可樂餅、由布院布丁也很有名','英式小村「湯布院フローラルヴィレッジ」可以順路'], move:['步行','約 15 分']},
+  {t:'14:30', name:'金鱗湖', jp:'金鱗湖', ll:[131.3712,33.2664], tags:['觀光'],
+   desc:'湖底有溫泉湧出，冬天清晨水溫比氣溫高，湖面會升起白霧，是由布院最有名的景色。',
+   tips:['想看晨霧要早上 7–8 點、天氣冷又無風的日子','湖邊的「下ん湯」是茅草屋頂的共同浴場'], move:['開車','約 10 分']},
+  {t:'16:00', name:'由布院溫泉旅館', short:'旅館', jp:'由布院', q:'由布院 温泉', tags:['住宿','溫泉'],
+   desc:'check-in 後泡溫泉，晚餐可以試試大分的「豐後牛」。',
+   tips:['明早出發前有空可以回金鱗湖看晨霧']}
+  ]},
+{ id:'d7', date:'', kanji:'阿', area:'阿蘇・回程', jp:'阿蘇と帰国', mode:'driving',
+  facts:[['交通','自駕・還車'],['航班','傍晚回程'],['氣溫','阿蘇可能 0°C 以下']],
+  stops:[
+  {t:'08:30', tl:'出發', name:'由布院 → 阿蘇', jp:'やまなみハイウェイ', tags:['交通'],
+   desc:'經過九重高原的景觀公路，沿途都是草原與火山。這天行程最滿，準時出發。',
+   tips:['冬天路面可能結冰，出發前看天氣與道路資訊'], move:['開車','約 1 小時 40 分']},
+  {t:'10:15', name:'上色見熊野座神社', short:'熊野座神社', jp:'上色見熊野座神社', ll:[131.1718,32.8445], tags:['神社'],
+   desc:'苔蘚覆蓋的石階兩旁排著近百座石燈籠，盡頭是被巨力打穿的「穿戶岩」。被當成動畫《螢火之森》的取景地。',
+   tips:['石階濕滑，穿防滑的鞋','往返加參拜約 1 小時'], move:['開車','約 40 分']},
+  {t:'11:30', name:'阿蘇中岳火口', short:'中岳火口', jp:'阿蘇山 中岳火口', ll:[131.0850,32.8840], tags:['火山'],
+   desc:'世界最大級的破火山口中，至今仍在冒煙的活火山口，可以直接往下看見火口湖。',
+   tips:['火口能否靠近要看當天火山氣體與警戒等級，出發前查「阿蘇山火口規制情報」','有氣喘或心肺疾病的人不建議靠近'], move:['開車','約 10 分']},
+  {t:'12:30', name:'草千里濱', short:'草千里', jp:'草千里ヶ浜', ll:[131.0490,32.8845], tags:['觀光','午餐'],
+   desc:'火山口遺跡形成的大草原，冬天草色是一整片金黃，可以體驗騎馬。',
+   tips:['午餐吃阿蘇名物「赤牛丼」（あか牛丼）','對面是阿蘇火山博物館'], move:['開車','約 40 分']},
+  {t:'14:15', name:'阿蘇神社・門前町', short:'阿蘇神社', jp:'阿蘇神社・門前町商店街', ll:[131.1165,32.9455], tags:['神社','購物'],
+   desc:'全國約 450 間阿蘇神社的總本社。地震倒塌的樓門已修復。門前町商店街有很多湧泉「水基」，可以邊走邊吃。',
+   tips:['商店街的可樂餅、湧水咖啡都很受歡迎','15:45 前一定要出發去機場'], move:['開車','約 50 分']},
+  {t:'16:45', tl:'還車', name:'還車・前往機場', short:'還車', jp:'阿蘇くまもと空港', ll:[130.855,32.837], q:'阿蘇くまもと空港', tags:['租車'],
+   desc:'機場附近加滿油後還車，再搭租車公司接駁車到航廈。國際線建議 17:15 前到。',
+   tips:['還車前拍照紀錄油表與車況','Costco 買的東西注意液體與肉品不能帶回台灣'], move:['', '辦理登機']},
+  {t:'19:15', tl:'起飛', name:'熊本出發', jp:'熊本 → 台中', tags:['航班'],
+   desc:'21:05 抵達台中，旅程結束。',
+   tips:['日本的肉製品（包括泡麵肉包、肉鬆）不能帶回台灣']}
+  ]}
+];
+const REGION={d1:'熊本',d2:'熊本',d3:'福岡',d4:'福岡',d5:'北九州',d6:'由布院',d7:'阿蘇'};
+DAYS.forEach((d,i)=>{ d.c='var(--d'+(i+1)+')'; d.n=i+1; d.wd=''; });
+
+/* ── helpers ── */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const md=d=>d.date.slice(5).replace('-','/');
+const gq=s=>encodeURIComponent(s);
+function navUrl(s,mode){const q=s.q||s.jp||s.name; return 'https://www.google.com/maps/dir/?api=1&destination='+gq(q)+'&travelmode='+(mode||'driving');}
+function nearUrl(s,what){return 'https://www.google.com/maps/search/?api=1&query='+gq(what+' near '+(s.q||s.jp||s.name))}
+const travelMode=d=>d.mode==='walking'?'walking':(d.mode==='transit'?'transit':'driving');
+function ago(ts){ if(!ts) return ''; const m=Math.round((Date.now()-ts)/6e4); if(m<1) return '剛剛'; if(m<60) return m+' 分鐘前'; const h=Math.round(m/60); if(h<24) return h+' 小時前'; const dt=new Date(ts); return (dt.getMonth()+1)+'/'+dt.getDate(); }
+
+/* ── state ── */
+// mode: local (no shared store here) · loading · shared · stale (store not answering yet)
+const S={mode:'local', canWrite:false, me:null, checks:{}, notes:[], edits:{}, extra:[],
+  editing:null, adding:null, noteOpen:new Set(), confirm:null};
+let db=null, user=null;
+let localDone={};
+try{localDone=JSON.parse(localStorage.getItem('kyushu26-done')||'{}')||{}}catch(e){localDone={}}
+const saveLocal=()=>{try{localStorage.setItem('kyushu26-done',JSON.stringify(localDone))}catch(e){}};
+const shared=()=>S.mode==='shared'||S.mode==='stale'||S.mode==='loading';
+const isDone=key=>shared()?!!S.checks[key]:!!localDone[key];
+
+/* merged view of a day: original stops + shared edits + added stops, sorted by time */
+function viewStops(d){
+  const out=[];
+  d.stops.forEach((b,i)=>{ const key=d.id+'-'+i, e=S.edits[key]||null; let s=b;
+    if(e){ s=Object.assign({},b); if(e.t) s.t=e.t; if(e.name){ s.name=e.name; if(e.name!==b.name){s.q=e.name+' '+REGION[d.id]; s.short=e.name;} } if(typeof e.desc==='string'&&e.desc) s.desc=e.desc; }
+    out.push({key,s,base:b,i,edit:e,hidden:!!(e&&e.hidden),extra:null}); });
+  S.extra.filter(x=>x.day===d.id).forEach(x=>out.push({key:'x-'+x.id,s:{t:x.t||'',name:x.name||'未命名',jp:REGION[d.id],desc:x.desc||'',tags:['自訂'],tips:[],q:(x.name||'')+' '+REGION[d.id]},extra:x,hidden:false}));
+  out.sort((a,b)=>(a.s.t||'99:99').localeCompare(b.s.t||'99:99'));
+  let n=0; out.forEach(o=>{o.n=(!o.hidden&&o.s.ll)?++n:null;});
+  return out;
+}
+
+
+/* ── tabs ── */
+const tabs=$('#tabs');
+tabs.innerHTML='<button class="tab all" role="tab" data-id="overview"><span class="kj">旅</span><span><span class="t1">總覽</span><br><span class="t2">7 日</span></span></button>'+
+ DAYS.map(d=>`<button class="tab" role="tab" data-id="${d.id}" style="--c:${d.c}"><span class="kj">${d.kanji}</span><span><span class="t1">DAY ${d.n}</span><br><span class="t2">${esc(d.area)}</span></span></button>`).join('');
+tabs.addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) location.hash=b.dataset.id;});
+
+function setView(v){document.body.dataset.view=v;$('#vt-list').setAttribute('aria-pressed',v==='list');$('#vt-map').setAttribute('aria-pressed',v==='map');if(v==='map')map.redraw();}
+$('#vt-list').onclick=()=>setView('list');
+$('#vt-map').onclick=()=>setView('map');
+document.body.dataset.view='list';
+
+/* ── status pill ── */
+function renderStatus(){
+  const el=$('#sync'); let t='', c='';
+  if(S.mode==='local'){ t='打勾只存在這台裝置'; c='off'; }
+  else if(S.mode==='loading'){ t='連線中…'; c='wait'; }
+  else if(S.mode==='stale'){ t='暫時連不上，資料可能不是最新'; c='wait'; }
+  else if(!S.canWrite){ t='共用行程・只能檢視'; c='ro'; }
+  else { t='共用中・大家的修改會即時同步'; c='on'; }
+  el.textContent=t; el.className='sync '+c;
+}
+
+/* ── list rendering ── */
+let current='overview', selected=null;
+function whoSpan(uid){ return uid?`<span class="who" data-uid="${esc(uid)}">某人</span>`:'某人'; }
+
+function cardHTML(d,o){
+  const s=o.s, key=o.key, done=isDone(key), canW=shared()&&S.canWrite;
+  if(o.hidden){
+    return `<li class="stop"><div class="time">${esc(s.t)}</div><div class="hiddenrow">已從行程移除：<b>${esc(s.name)}</b>${o.edit&&o.edit.by?`（${whoSpan(o.edit.by)}）`:''}${canW?`<button data-act="unhide" data-key="${key}">放回行程</button>`:''}</div></li>`;
+  }
+  if(S.editing===key){
+    const isX=!!o.extra;
+    return `<li class="stop"><div class="time">${esc(s.t)}</div>
+      <form class="card editform" style="--c:${d.c}" data-form="edit" data-key="${key}">
+        <div class="frow"><label for="ef-t-${key}">時間</label><input id="ef-t-${key}" name="t" type="time" value="${esc(s.t)}"></div>
+        <div class="frow"><label for="ef-n-${key}">名稱</label><input id="ef-n-${key}" name="name" maxlength="40" required value="${esc(s.name)}"></div>
+        <div class="frow"><label for="ef-d-${key}">說明</label><textarea id="ef-d-${key}" name="desc" rows="3" maxlength="400">${esc(s.desc)}</textarea></div>
+        <div class="acts">
+          <button type="submit" class="primary">儲存</button>
+          <button type="button" data-act="cancel">取消</button>
+          ${!isX&&o.edit&&!o.edit.hidden?`<button type="button" data-act="reset" data-key="${key}">還原成原本內容</button>`:''}
+          <button type="button" class="danger" data-act="remove" data-key="${key}">${S.confirm===key?'再按一次確認移除':'移除這站'}</button>
+        </div>
+      </form></li>`;
+  }
+  const acts=(s.ll||s.q)?`<a class="go" href="${navUrl(s,travelMode(d))}" target="_blank" rel="noopener">導航</a>
+      <a href="${nearUrl(s,'レストラン')}" target="_blank" rel="noopener">附近美食</a>
+      <a href="${nearUrl(s,'コンビニ')}" target="_blank" rel="noopener">便利商店</a>`:'';
+  const notes=shared()?S.notes.filter(n=>n.key===key):[];
+  const chk=S.checks[key];
+  const changed=o.extra?`<span class="chip mod">${whoSpan(o.extra.by)} 新增</span>`:(o.edit&&o.edit.by&&!o.edit.hidden&&(o.edit.t||o.edit.name||o.edit.desc)?`<span class="chip mod">${whoSpan(o.edit.by)} 修改過</span>`:'');
+  const noteBlock = shared() ? `<div class="notes-box">
+      ${notes.length?`<ul class="nlist">${notes.map(n=>`<li><span class="nwho">${whoSpan(n.by)}</span><span class="ntext">${esc(n.text)}</span><span class="nt">${ago(n.at)}</span>${canW&&(n.by===S.me)?`<button class="ndel" data-act="delnote" data-id="${esc(n.id)}" aria-label="刪除這則留言">×</button>`:''}</li>`).join('')}</ul>`:''}
+      ${canW?(S.noteOpen.has(key)?`<form class="nform" data-form="note" data-key="${key}"><input id="nt-${key}" name="text" maxlength="300" placeholder="例如：這家要先訂位" autocomplete="off"><button type="submit" class="primary">送出</button></form>`:''):''}
+    </div>` : '';
+  return `<li class="stop" id="s-${key}">
+      <div class="time">${esc(s.t||'—')}${s.tl?`<span>${esc(s.tl)}</span>`:''}</div>
+      <article class="card${done?' is-done':''}${selected===key?' sel':''}" style="--c:${d.c}" data-key="${key}">
+        <div class="stamp" aria-hidden="true">済</div>
+        <div class="chead"><div><h3>${esc(s.name)}</h3>${s.jp?`<div class="jp" lang="ja">${esc(s.jp)}</div>`:''}</div>${o.n?`<span class="num" title="地圖編號">${o.n}</span>`:''}</div>
+        ${s.desc?`<p>${esc(s.desc)}</p>`:''}
+        <div class="chips">${(s.tags||[]).map((t,j)=>`<span class="chip${j===0?' t':''}">${esc(t)}</span>`).join('')}${changed}</div>
+        ${s.tips&&s.tips.length?`<ul class="tips">${s.tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}
+        ${noteBlock}
+        <div class="acts">${acts}${o.n?`<button data-act="pin" data-key="${key}">在地圖上看</button>`:''}
+          ${canW?`<button data-act="note" data-key="${key}">${S.noteOpen.has(key)?'收起留言':'留言'}</button><button data-act="edit" data-key="${key}">編輯</button>`:''}
+          <span class="donewrap">${done&&shared()&&chk&&chk.by?`<span class="doneby">${whoSpan(chk.by)} ✓</span>`:''}${(!shared()||canW)?`<button class="done" data-act="done" data-key="${key}" aria-pressed="${done}">${done?'取消打勾':'到過了 ✓'}</button>`:''}</span></div>
+      </article>
+    </li>`;
+}
+
+function renderDay(d){
+  const vs=viewStops(d); const canW=shared()&&S.canWrite;
+  const items=vs.map((o,k)=>{
+    let h=cardHTML(d,o);
+    const nx=vs[k+1];
+    if(!o.extra&&o.base.move&&nx&&!nx.extra&&nx.i===o.i+1&&!o.hidden) h+=`<li class="stop"><div></div><div class="move">${o.base.move[0]?`<span class="mv">${esc(o.base.move[0])}</span>`:''}${esc(o.base.move[1])}</div></li>`;
+    return h;
+  }).join('');
+  const add = canW ? (S.adding===d.id ? `<form class="card editform addform" style="--c:${d.c}" data-form="add" data-day="${d.id}">
+        <div class="frow"><label for="af-t-${d.id}">時間</label><input id="af-t-${d.id}" name="t" type="time"></div>
+        <div class="frow"><label for="af-n-${d.id}">名稱</label><input id="af-n-${d.id}" name="name" maxlength="40" required placeholder="景點或店名"></div>
+        <div class="frow"><label for="af-d-${d.id}">說明</label><textarea id="af-d-${d.id}" name="desc" rows="2" maxlength="400" placeholder="想做什麼、要注意什麼"></textarea></div>
+        <div class="acts"><button type="submit" class="primary">加入行程</button><button type="button" data-act="cancel">取消</button></div>
+      </form>` : `<button class="addbtn" data-act="add" data-day="${d.id}">＋ 新增景點</button>`) : '';
+  return `<div class="dayhead" style="--c:${d.c}"><div class="daykanji">${d.kanji}</div><div><div class="d">DAY ${d.n}</div><h2>${esc(d.area)}</h2></div></div>
+    <ul class="facts">${d.facts.map(f=>`<li>${esc(f[0])}　<b>${esc(f[1])}</b></li>`).join('')}</ul>
+    <ol class="tl">${items}</ol>${add}`;
+}
+function renderOverview(){
+  const rows=DAYS.map(d=>{ const vs=viewStops(d).filter(o=>!o.hidden);
+    const names=vs.filter(o=>o.extra||!/^(HM|門司港 →|由布院 →|還車)/.test(o.base.name)).map(o=>esc(o.s.short||o.s.name)).join(' → ');
+    const total=vs.length, c=vs.filter(o=>isDone(o.key)).length;
+    return `<li><button class="ov-day" data-go="${d.id}" style="--c:${d.c}"><span class="daykanji">${d.kanji}</span><span><span class="dt">DAY ${d.n}${c?`<span class="prog">${c}/${total} 已打勾</span>`:''}</span><br><span class="ar">${esc(d.area)}</span><span class="rt" style="display:block">${names}</span></span></button></li>`; }).join('');
+  const stays=[['第 1 晚','熊本市區飯店','熊本',''],['第 2 晚','熊本市區飯店（續住）','熊本',''],['第 3 晚','中洲一帶飯店','福岡',''],['第 4 晚','中洲一帶飯店（續住）','福岡',''],['第 5 晚','門司港飯店','北九州',''],['第 6 晚','溫泉旅館','由布院','']];
+  const recent = shared() ? S.notes.slice().sort((a,b)=>(b.at||0)-(a.at||0)).slice(0,5) : [];
+  const nameOf=key=>{ for(const d of DAYS){ const o=viewStops(d).find(o=>o.key===key); if(o) return [d,o.s.name]; } return [null,'']; };
+  return `<h2 class="sec">航班</h2>
+  <div class="flights">
+    <div class="ticket"><span class="code">OUTBOUND</span><span class="route">RMQ <small>→</small> KMJ</span><span class="when">DAY 1 下午出發・傍晚抵達</span><span class="side">去程<br>台中<br>↓<br>熊本</span></div>
+    <div class="ticket"><span class="code">RETURN</span><span class="route">KMJ <small>→</small> RMQ</span><span class="when">DAY 7 晚上起飛</span><span class="side">回程<br>熊本<br>↓<br>台中</span></div>
+  </div>
+  ${recent.length?`<h2 class="sec">最新留言</h2><ul class="recent">${recent.map(n=>{const [d,nm]=nameOf(n.key); return d?`<li><button data-go="${d.id}" style="--c:${d.c}"><span class="rk">${d.kanji}</span><span><span class="nwho">${whoSpan(n.by)}</span>　<span class="rs">${esc(nm)}</span><br>${esc(n.text)}</span></button></li>`:'';}).join('')}</ul>`:''}
+  <h2 class="sec">每日行程</h2>
+  <ol class="ov-days">${rows}</ol>
+  <h2 class="sec">住宿</h2>
+  <div class="stays-wrap"><table class="stays"><thead><tr><th>入住</th><th>飯店</th><th>地區</th></tr></thead><tbody>
+  ${stays.map(s=>`<tr><td class="n">${s[0]}</td><td>${esc(s[1])}${s[3]?`<span class="assume">${s[3]}</span>`:''}</td><td>${s[2]}</td></tr>`).join('')}
+  </tbody></table></div>
+  <h2 class="sec">出發前確認</h2>
+  <ul class="notes">
+    <li><b>駕照日文譯本</b>台灣駕照正本＋監理站申請的日文譯本，租車時兩份都要出示。</li>
+    <li><b>冬季輪胎與 ETC</b>最後兩天走山路上阿蘇，取車時確認冬季輪胎；ETC 卡讓高速公路收費快很多。</li>
+    <li><b>阿蘇火口規制</b>中岳火口能不能靠近，當天早上查「阿蘇山火口規制情報」。</li>
+    <li><b>現金</b>中洲屋台、神社御守和小店多半只收現金，身上留一些日圓。</li>
+    <li><b>穿著</b>福岡白天約 10°C，阿蘇高地可能低於 0°C，洋蔥式穿法加防風外套。</li>
+    <li><b>不能帶回台灣</b>肉製品（含肉鬆、泡麵肉包）與新鮮蔬果，Costco 採買時留意。</li>
+  </ul>`;
+}
+
+/* re-render without losing what someone is typing */
+function renderList(){
+  const list=$('#list'); const keep={}; let focus=null, sel=null;
+  list.querySelectorAll('input[id],textarea[id]').forEach(i=>keep[i.id]=i.value);
+  const ae=document.activeElement; if(ae&&ae.id&&list.contains(ae)){focus=ae.id; try{sel=[ae.selectionStart,ae.selectionEnd]}catch(e){}}
+  const d=DAYS.find(x=>x.id===current);
+  list.innerHTML = d ? renderDay(d) : renderOverview();
+  for(const id in keep){ const i=document.getElementById(id); if(i) i.value=keep[id]; }
+  if(focus){ const i=document.getElementById(focus); if(i){ i.focus({preventScroll:true}); try{ if(sel&&sel[0]!=null) i.setSelectionRange(sel[0],sel[1]); }catch(e){} } }
+  fillNames();
+}
+async function fillNames(){
+  const spans=[...document.querySelectorAll('.who[data-uid]')]; if(!spans.length||!user) return;
+  const ids=[...new Set(spans.map(s=>s.dataset.uid))];
+  let ps={}; try{ ps=await user.profiles(ids); }catch(e){ return; }
+  document.querySelectorAll('.who[data-uid]').forEach(s=>{ const p=ps[s.dataset.uid]; if(!p) return; s.textContent = p.isMe ? '你' : (p.name || '某人'); });
+}
+let pending=false;
+function schedule(){ if(pending) return; pending=true; setTimeout(()=>{pending=false; renderList(); map.redraw(); renderStatus();},0); }
+
+function render(){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.id===current));
+  const tab=document.querySelector(`.tab[data-id="${current}"]`); if(tab) tab.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  S.editing=null; S.adding=null; S.confirm=null; selected=null;
+  renderList();
+  map.show(DAYS.find(x=>x.id===current)||null);
+}
+
+/* ── shared writes ── */
+let toastT;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,3500); }
+async function W(promise){
+  try{ await promise; return true; }
+  catch(e){
+    const code=e&&e.code;
+    if(code==='invalid_argument'){ S.canWrite=false; S.editing=null; S.adding=null; toast('你目前只有檢視權限，請行程擁有者在分享設定開放「可以互動」'); schedule(); }
+    else if(code==='quota_exceeded'){ toast('共用空間已滿，刪掉一些舊留言再試'); }
+    else if(code==='revoked'){ S.canWrite=false; schedule(); }
+    else toast('沒有存到，請再試一次');
+    return false;
+  }
+}
+const now=()=>Date.now();
+function findStop(key){ for(const d of DAYS){ const o=viewStops(d).find(o=>o.key===key); if(o) return {d,o}; } return null; }
+
+$('#list').addEventListener('click',async e=>{
+  const go=e.target.closest('[data-go]'); if(go){location.hash=go.dataset.go; window.scrollTo({top:0,behavior:'smooth'}); return;}
+  const b=e.target.closest('button[data-act]'); if(!b) return;
+  const act=b.dataset.act, key=b.dataset.key;
+  if(act==='done'){
+    if(shared()){ if(!S.canWrite) return; const ref=db.doc('checks/'+key);
+      await W(S.checks[key]?ref.delete():ref.set({by:S.me,at:now()})); }
+    else { if(localDone[key]) delete localDone[key]; else localDone[key]=1; saveLocal(); renderList(); }
+  } else if(act==='pin'){
+    select(key,false); if(window.innerWidth<=880) setView('map');
+  } else if(act==='note'){
+    if(S.noteOpen.has(key)) S.noteOpen.delete(key); else S.noteOpen.add(key);
+    renderList(); const i=document.getElementById('nt-'+key); if(i) i.focus();
+  } else if(act==='delnote'){
+    await W(db.doc('notes/'+b.dataset.id).delete());
+  } else if(act==='edit'){
+    S.editing=key; S.confirm=null; S.adding=null; renderList(); const i=document.getElementById('ef-n-'+key); if(i) i.focus();
+  } else if(act==='cancel'){
+    S.editing=null; S.adding=null; S.confirm=null; renderList();
+  } else if(act==='add'){
+    S.adding=b.dataset.day; S.editing=null; renderList(); const i=document.getElementById('af-n-'+b.dataset.day); if(i) i.focus();
+  } else if(act==='remove'){
+    if(S.confirm!==key){ S.confirm=key; renderList(); return; }
+    const f=findStop(key); if(!f) return; S.editing=null; S.confirm=null;
+    if(f.o.extra) await W(db.doc('extra/'+f.o.extra.id).delete());
+    else await W(db.doc('edits/'+key).set(Object.assign({},S.edits[key]||{},{hidden:true,by:S.me,at:now()})));
+    renderList();
+  } else if(act==='reset'){
+    S.editing=null; await W(db.doc('edits/'+key).delete()); renderList();
+  } else if(act==='unhide'){
+    const e0=S.edits[key]||{}; const rest=Object.assign({},e0,{hidden:false,by:S.me,at:now()});
+    await W((e0.t||e0.name||e0.desc)?db.doc('edits/'+key).set(rest):db.doc('edits/'+key).delete());
+  }
+});
+$('#list').addEventListener('submit',async e=>{
+  const f=e.target.closest('form[data-form]'); if(!f) return; e.preventDefault();
+  if(!db||!S.canWrite) return;
+  const fd=new FormData(f), v=k=>String(fd.get(k)||'').trim();
+  if(f.dataset.form==='note'){
+    const text=v('text').slice(0,300); if(!text) return; const key=f.dataset.key;
+    const inp=f.querySelector('input'); inp.value='';
+    if(!await W(db.collection('notes').add({key,text,by:S.me,at:now()}))) inp.value=text;
+  } else if(f.dataset.form==='edit'){
+    const key=f.dataset.key, found=findStop(key); if(!found) return;
+    const t=v('t'), name=v('name').slice(0,40), desc=v('desc').slice(0,400); if(!name) return;
+    S.editing=null; S.confirm=null;
+    if(found.o.extra){ const x=found.o.extra; await W(db.doc('extra/'+x.id).set({day:x.day,t,name,desc,by:x.by||null,at:x.at||now(),editedBy:S.me,editedAt:now()})); }
+    else { const b=found.o.base;
+      const body={by:S.me,at:now(),hidden:false};
+      if(t&&t!==b.t) body.t=t; if(name!==b.name) body.name=name; if(desc!==b.desc) body.desc=desc;
+      await W((body.t||body.name||body.desc)?db.doc('edits/'+key).set(body):db.doc('edits/'+key).delete()); }
+    renderList();
+  } else if(f.dataset.form==='add'){
+    const t=v('t'), name=v('name').slice(0,40), desc=v('desc').slice(0,400); if(!name) return;
+    S.adding=null;
+    await W(db.collection('extra').add({day:f.dataset.day,t,name,desc,by:S.me,at:now()}));
+    renderList();
+  }
+});
+function select(key,scroll){
+  selected=key;
+  document.querySelectorAll('.card.sel').forEach(c=>c.classList.remove('sel'));
+  const c=document.querySelector(`.card[data-key="${key}"]`); if(c){c.classList.add('sel'); if(scroll && window.innerWidth>880) c.scrollIntoView({block:'center',behavior:'smooth'});}
+  map.redraw();
+}
+
+/* ── illustrated map ── */
+const map=(function(){
+  const svg=$('#map'), NS='http://www.w3.org/2000/svg';
+  const LNG0=129.80, LAT0=34.12, K=400, CX=Math.cos(33.3*Math.PI/180);
+  const P=(lng,lat)=>[(lng-LNG0)*K*CX,(LAT0-lat)*K];
+  const FULL={x:0,y:0,w:(132.0-LNG0)*K*CX,h:(LAT0-32.30)*K};
+  const KYUSHU=[[129.70,33.52],[129.89,33.55],[129.93,33.50],[129.97,33.46],[130.03,33.45],[130.10,33.53],[130.17,33.61],[130.22,33.60],[130.27,33.58],[130.32,33.588],[130.34,33.592],[130.352,33.5958],[130.37,33.597],[130.385,33.600],[130.398,33.605],[130.405,33.609],[130.41,33.613],[130.425,33.622],[130.432,33.645],[130.42,33.66],[130.37,33.663],[130.33,33.668],[130.29,33.672],[130.30,33.684],[130.34,33.686],[130.39,33.678],[130.43,33.69],[130.45,33.73],[130.47,33.77],[130.50,33.81],[130.53,33.85],[130.57,33.89],[130.64,33.90],[130.72,33.92],[130.80,33.917],[130.83,33.905],[130.87,33.896],[130.91,33.905],[130.935,33.925],[130.955,33.945],[130.97,33.966],[130.995,33.955],[131.00,33.90],[130.99,33.82],[130.99,33.76],[131.03,33.71],[131.10,33.65],[131.20,33.61],[131.30,33.58],[131.40,33.58],[131.48,33.64],[131.56,33.67],[131.65,33.63],[131.73,33.55],[131.70,33.45],[131.62,33.41],[131.55,33.38],[131.52,33.33],[131.50,33.28],[131.56,33.25],[131.66,33.25],[131.78,33.27],[131.87,33.26],[131.86,33.18],[131.82,33.12],[131.89,33.07],[131.95,33.00],[131.92,32.94],[131.97,32.85],[131.90,32.75],[131.82,32.62],[131.74,32.50],[131.72,32.20],[130.60,32.20],[130.57,32.45],[130.60,32.52],[130.55,32.60],[130.48,32.64],[130.52,32.70],[130.57,32.76],[130.58,32.82],[130.55,32.90],[130.46,32.96],[130.43,33.03],[130.39,33.12],[130.36,33.17],[130.25,33.19],[130.15,33.15],[130.10,33.08],[130.07,33.00],[130.10,32.92],[130.05,32.86],[130.17,32.82],[130.30,32.80],[130.37,32.74],[130.36,32.65],[130.29,32.60],[130.21,32.63],[130.15,32.72],[130.05,32.76],[129.95,32.80],[129.70,32.80]];
+  const AMAKUSA=[[130.42,32.60],[130.47,32.56],[130.40,32.50],[130.35,32.42],[130.25,32.38],[130.10,32.42],[130.02,32.50],[130.12,32.55],[130.22,32.53],[130.32,32.58]];
+  const HONSHU=[[130.86,34.30],[130.88,34.05],[130.90,33.99],[130.935,33.963],[130.96,33.972],[130.99,33.985],[131.05,33.975],[131.15,34.00],[131.25,34.03],[131.40,34.00],[131.55,33.98],[131.70,33.99],[131.85,34.02],[132.1,34.05],[132.1,34.30]];
+  const NOKO=[[130.30,33.625],[130.315,33.637],[130.322,33.622],[130.305,33.612]];
+  const SEAS=[['玄界灘',130.12,33.92],['周防灘',131.30,33.88],['有明海',130.27,33.02],['別府湾',131.68,33.37]];
+  const CITIES=[['福岡',130.40,33.575,1],['熊本',130.72,32.79,1],['北九州',130.82,33.85,1],['由布院',131.36,33.24,1],['太宰府',130.53,33.50,1],['大分',131.61,33.22,1],['下関',130.95,34.02,1],['別府',131.47,33.29,1],
+    ['天神',130.3985,33.5885,2],['中洲',130.4075,33.5945,2],['博多駅',130.4207,33.5897,2],['百道浜',130.352,33.5965,2],['門司',130.958,33.950,2],['小倉',130.880,33.888,2],['熊本駅',130.689,32.790,2]];
+  const MTNS=[['阿蘇山',131.09,32.88,0],['九重連山',131.24,33.09,0],['由布岳',131.39,33.282,3]];
+  function path(pts,close){
+    const q=pts.map(p=>P(p[0],p[1])); let d='M'+q[0][0].toFixed(1)+' '+q[0][1].toFixed(1);
+    for(let i=0;i<q.length-1;i++){const p0=q[i-1]||q[i],p1=q[i],p2=q[i+1],p3=q[i+2]||p2;
+      const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+      d+=`C${c1[0].toFixed(2)} ${c1[1].toFixed(2)} ${c2[0].toFixed(2)} ${c2[1].toFixed(2)} ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`;}
+    return d+(close?'Z':'');
+  }
+  svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+  svg.innerHTML=`<defs><pattern id="seigaiha" width="24" height="12" patternUnits="userSpaceOnUse">
+      <path class="seawave" d="M0 12a12 12 0 0 1 24 0M4 12a8 8 0 0 1 16 0M8 12a4 4 0 0 1 8 0M-12 6a12 12 0 0 1 24 0M-8 6a8 8 0 0 1 16 0M12 6a12 12 0 0 1 24 0M16 6a8 8 0 0 1 16 0"/></pattern></defs>
+    <rect x="-3000" y="-3000" width="7000" height="7000" style="fill:var(--sea)"/>
+    <rect id="waves" x="-3000" y="-3000" width="7000" height="7000" fill="url(#seigaiha)"/>
+    <g id="landg">
+      <path class="land" vector-effect="non-scaling-stroke" d="${path(HONSHU,true)}"/>
+      <path class="land" vector-effect="non-scaling-stroke" d="${path(KYUSHU,true)}"/>
+      <path class="land" vector-effect="non-scaling-stroke" d="${path(AMAKUSA,true)}"/>
+      <path class="land" vector-effect="non-scaling-stroke" d="${path(NOKO,true)}"/>
+    </g><g id="ov"></g>`;
+  const ov=svg.querySelector('#ov'), pat=svg.querySelector('#seigaiha');
+  let vb={...FULL}, day=null, anim=null;
+  const pinsOf=d=>viewStops(d).filter(o=>!o.hidden&&o.s.ll);
+
+  function bboxFor(d){
+    const pts=d?pinsOf(d).map(o=>P(...o.s.ll)):null;
+    if(!pts||!pts.length) return {...FULL};
+    let x0=Math.min(...pts.map(p=>p[0])),x1=Math.max(...pts.map(p=>p[0])),y0=Math.min(...pts.map(p=>p[1])),y1=Math.max(...pts.map(p=>p[1]));
+    let w=Math.max(x1-x0,6), h=Math.max(y1-y0,6); const cx=(x0+x1)/2, cy=(y0+y1)/2;
+    let side=Math.max(Math.max(w,h)*1.6+8,36);
+    return {x:cx-side/2,y:cy-side/2,w:side,h:side};
+  }
+  function upp(){const px=svg.clientWidth||400; return vb.w/px;}
+  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||ov).appendChild(e);return e;}
+  function textW(str,fs){let w=0;for(const ch of str)w+=/[\x00-\x7F]/.test(ch)?fs*.58:fs;return w;}
+
+  function draw(){
+    svg.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    const u=upp(); pat.setAttribute('patternTransform',`scale(${u*1.1})`);
+    ov.innerHTML='';
+    const zoom=FULL.w/vb.w;
+    const dayPins=day?pinsOf(day):[];
+    const dayPts=dayPins.map(o=>P(...o.s.ll));
+    if(zoom<3) SEAS.forEach(([n,lng,lat])=>{const [x,y]=P(lng,lat); const t=el('text',{x,y,class:'lbl-sea','font-size':15*u,'text-anchor':'middle','writing-mode':'tb','letter-spacing':4*u}); t.textContent=n;});
+    MTNS.forEach(([n,lng,lat,minZ])=>{const [x,y]=P(lng,lat); if(zoom>30||zoom<minZ) return; const s=9*u;
+      if(dayPts.some(p=>Math.hypot(p[0]-x,p[1]-y)<30*u)) return;
+      el('path',{class:'mtn','stroke-width':1.3*u,d:`M${x-s*1.6} ${y+s*.6}L${x-s*.5} ${y-s*.7}L${x} ${y-s*.1}L${x+s*.6} ${y-s*.9}L${x+s*1.7} ${y+s*.6}`});
+      const t=el('text',{x,y:y+s*2.1,class:'lbl-mtn','font-size':10.5*u,'text-anchor':'middle'}); t.textContent=n;});
+    CITIES.forEach(([n,lng,lat,lv])=>{ if((lv===1&&zoom>9)||(lv===2&&zoom<9)) return; const [x,y]=P(lng,lat);
+      if(dayPts.some(p=>Math.hypot(p[0]-x,p[1]-y)<26*u)) return;
+      const t=el('text',{x,y,class:'lbl-city','font-size':(lv===1?13:12)*u,'text-anchor':'middle',opacity:lv===1?.8:.7}); t.textContent=n;});
+    DAYS.forEach(d=>{ if(day && d!==day) return;
+      const pts=pinsOf(d).map(o=>P(...o.s.ll)); if(pts.length<2) return;
+      el('polyline',{class:'route',points:pts.map(p=>p.join(',')).join(' '),style:`stroke:${d.c}`,'stroke-width':(day?3:2.4)*u,'stroke-dasharray':`${6*u} ${4*u}`,opacity:day?.9:.75});
+    });
+    if(day) DAYS.forEach(d=>{ if(d===day) return; pinsOf(d).forEach(o=>{const [x,y]=P(...o.s.ll); el('circle',{cx:x,cy:y,r:3.2*u,style:`fill:${d.c}`,opacity:.35});});});
+    if(!day){ DAYS.forEach(d=>pinsOf(d).forEach(o=>{ const [x,y]=P(...o.s.ll);
+        el('circle',{cx:x,cy:y,r:4.5*u,style:`fill:${d.c};stroke:var(--card)`,'stroke-width':1.2*u}); })); }
+    const placed=[];
+    if(day){
+      dayPins.forEach(o=>{ const [x,y]=P(...o.s.ll);
+        placed.push({x,y,ox:x,oy:y,r:(selected===o.key?13:10.5)*u,n:o.n,key:o.key,name:o.s.name,label:o.s.short||o.s.name}); });
+      const R0=10.5*u, clusters=[];
+      placed.forEach(p=>{ const c=clusters.find(c=>c.some(q=>Math.hypot(q.x-p.x,q.y-p.y)<R0*2.3)); c?c.push(p):clusters.push([p]); });
+      clusters.forEach(c=>{ if(c.length<2) return;
+        const cx=c.reduce((a,p)=>a+p.x,0)/c.length, cy=c.reduce((a,p)=>a+p.y,0)/c.length, R=Math.max(R0*2.2,c.length*R0*.85);
+        c.forEach((p,k)=>{ const a=-Math.PI/2+k*2*Math.PI/c.length; p.x=cx+R*Math.cos(a); p.y=cy+R*Math.sin(a);
+          el('line',{x1:p.ox,y1:p.oy,x2:p.x,y2:p.y,style:`stroke:${day.c}`,'stroke-width':1.2*u,opacity:.7});
+          el('circle',{cx:p.ox,cy:p.oy,r:2.6*u,style:`fill:${day.c}`}); });
+      });
+      placed.forEach(p=>{
+        const g=el('g',{class:'pin',tabindex:0,role:'button','aria-label':p.name,'data-key':p.key});
+        el('circle',{cx:p.x,cy:p.y,r:p.r+2*u,style:'fill:var(--card)'},g);
+        el('circle',{cx:p.x,cy:p.y,r:p.r,style:`fill:${day.c}`},g);
+        const t=el('text',{x:p.x,y:p.y+3.8*u,'font-size':11*u,'text-anchor':'middle'},g); t.textContent=p.n;
+      });
+      const boxes=placed.map(p=>({x:p.x-p.r,y:p.y-p.r,w:p.r*2,h:p.r*2}));
+      const m=4*u;
+      const hit=(b)=>b.x<vb.x+m||b.y<vb.y+m||b.x+b.w>vb.x+vb.w-m||b.y+b.h>vb.y+vb.h-m||boxes.some(o=>b.x<o.x+o.w&&b.x+b.w>o.x&&b.y<o.y+o.h&&b.y+b.h>o.y);
+      placed.forEach(p=>{ const fs=12*u, w=textW(p.label,fs), h=fs*1.2, g=4*u;
+        const cands=[[p.x+p.r+g,p.y-h/2,'start'],[p.x-p.r-g-w,p.y-h/2,'end'],[p.x-w/2,p.y-p.r-g-h,'middle'],[p.x-w/2,p.y+p.r+g,'middle']];
+        let c=cands.find(c=>!hit({x:c[0],y:c[1],w,h}))||cands[0];
+        boxes.push({x:c[0],y:c[1],w,h});
+        const tx=c[2]==='start'?c[0]:c[2]==='end'?c[0]+w:c[0]+w/2;
+        const t=el('text',{x:tx,y:c[1]+fs*.95,class:'plabel','font-size':fs,'text-anchor':c[2],'stroke-width':3.2*u}); t.textContent=p.label;
+      });
+    }
+  }
+  function tweenTo(target){
+    cancelAnimationFrame(anim);
+    const from={...vb}, t0=performance.now(), dur=matchMedia('(prefers-reduced-motion: reduce)').matches?0:650;
+    const step=now=>{const k=dur?Math.min(1,(now-t0)/dur):1, e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      const lw=Math.exp(Math.log(from.w)+(Math.log(target.w)-Math.log(from.w))*e);
+      const cx=(from.x+from.w/2)+((target.x+target.w/2)-(from.x+from.w/2))*e, cy=(from.y+from.h/2)+((target.y+target.h/2)-(from.y+from.h/2))*e;
+      vb={x:cx-lw/2,y:cy-lw/2,w:lw,h:lw}; draw(); if(k<1) anim=requestAnimationFrame(step);};
+    anim=requestAnimationFrame(step);
+    clearTimeout(tweenTo.t); tweenTo.t=setTimeout(()=>{cancelAnimationFrame(anim); vb={...target}; draw();},dur+120);
+  }
+  function note(){
+    const box=$('#mapnote');
+    if(!day){box.innerHTML='<span class="sub">點上方日期，地圖會放大到當天路線。虛線是每天的移動順序。</span>';return;}
+    const o=selected?pinsOf(day).find(o=>o.key===selected):null;
+    if(!o){box.innerHTML=`<span class="sub">點地圖上的數字看景點，編號和左邊卡片一樣。</span>`;return;}
+    box.innerHTML=`<div class="nm">${o.n}. ${esc(o.s.name)}</div><div class="sub">${esc(o.s.t)}　<span lang="ja">${esc(o.s.jp||'')}</span></div><a href="${navUrl(o.s,travelMode(day))}" target="_blank" rel="noopener">Google Maps 導航</a>`;
+  }
+  svg.addEventListener('click',e=>{const g=e.target.closest('.pin'); if(g){select(g.dataset.key,true);}});
+  svg.addEventListener('keydown',e=>{const g=e.target.closest('.pin'); if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();select(g.dataset.key,true);}});
+  $('#mapall').onclick=()=>{ if(day) tweenTo(FULL); };
+  $('#legend').innerHTML=DAYS.map(d=>`<span style="--c:${d.c}"><i></i>D${d.n} ${d.kanji}</span>`).join('');
+  let ro; window.addEventListener('resize',()=>{clearTimeout(ro);ro=setTimeout(draw,120);});
+  return {
+    show(d){day=d; $('#mapttl').textContent=d?`DAY ${d.n}　${d.area}`:'九州全圖・七日路線'; $('#mapall').hidden=!d; tweenTo(bboxFor(d)); note();},
+    redraw(){draw(); note();}
+  };
+})();
+
+/* ── shared store: checks, notes, edits, added stops ── */
+async function initShared(){
+  if(!(window.claude&&typeof window.claude.use==='function')){ renderStatus(); return; }
+  S.mode='loading'; renderStatus();
+  let d=null,u=null;
+  try{ [d,u]=await Promise.all([claude.use('db'),claude.use('user')]); }catch(e){}
+  user=u;
+  if(!d){ S.mode='local'; renderStatus(); renderList(); return; }
+  db=d;
+  try{ S.me=user?await user.id():null; }catch(e){ S.me=null; }
+  let cw=null; try{ cw=user?await user.can('data.write'):null; }catch(e){}
+  S.canWrite = cw!==false;
+  schedule();
+  const confirmed=new Set(); const NEED=4;
+  const timer=setTimeout(()=>{ if(confirmed.size<NEED){ S.mode='stale'; renderStatus(); } },10000);
+  const ok=(name,snap)=>{ if(!snap.metadata.fromCache){ confirmed.add(name); if(confirmed.size>=NEED){ clearTimeout(timer); S.mode='shared'; } } schedule(); };
+  const fail=name=>e=>{ confirmed.add(name); if(confirmed.size>=NEED) clearTimeout(timer); if(e&&e.code==='revoked'){ S.canWrite=false; } schedule(); };
+  db.collection('checks').onSnapshot(s=>{ const m={}; s.docs.forEach(x=>m[x.id]=x.data()); S.checks=m; ok('checks',s); }, fail('checks'));
+  db.collection('notes').onSnapshot(s=>{ S.notes=s.docs.map(x=>Object.assign({},x.data(),{id:x.id})).sort((a,b)=>(a.at||0)-(b.at||0)); ok('notes',s); }, fail('notes'));
+  db.collection('edits').onSnapshot(s=>{ const m={}; s.docs.forEach(x=>m[x.id]=x.data()); S.edits=m; ok('edits',s); }, fail('edits'));
+  db.collection('extra').onSnapshot(s=>{ S.extra=s.docs.map(x=>Object.assign({},x.data(),{id:x.id})).sort((a,b)=>(a.at||0)-(b.at||0)); ok('extra',s); }, fail('extra'));
+}
+
+/* ── routing ── */
+function fromHash(){
+  const h=location.hash.slice(1);
+  if(h==='overview'||DAYS.some(d=>d.id===h)) return h;
+  const now=new Date(); const jst=new Date(now.getTime()+9*3600e3).toISOString().slice(0,10);
+  const t=DAYS.find(d=>d.date===jst); return t?t.id:'overview';
+}
+window.addEventListener('hashchange',()=>{current=fromHash();render();});
+current=fromHash(); renderStatus(); render();
+setInterval(()=>{ if(shared()&&S.notes.length&&!document.querySelector('#list input:focus,#list textarea:focus')) renderList(); },60000);
+})();
+</script>
+
+</body></html>
