@@ -13,7 +13,7 @@ if (page !== 'products') {
   const a = (href, id, zh, en, cls = '') =>
     `<a href="${href}" class="${[id === page ? 'active' : '', cls].join(' ').trim()}" data-en="${en}">${zh}</a>`;
   document.body.insertAdjacentHTML('afterbegin', `
-  <nav class="nav" id="mainnav">
+  <nav class="nav${page === 'index' ? '' : ' sub'}" id="mainnav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Tiffany<span>.</span></a>
       <button class="menu-toggle" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
