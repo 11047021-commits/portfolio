@@ -1,0 +1,742 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>實習英文句庫｜作品集展示版</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: dark "tool panel" sidebar of folders beside a light working surface; accent is the amber of a lithography yellow room. */
+:root{
+  --bg:#F1F2F4; --surface:#FFFFFF; --surface-2:#E8EAEE; --ink:#151A22; --muted:#596170; --line:#D7DAE0;
+  --accent:#9A5A00; --accent-fill:#F2AE1C; --accent-ink:#1E1500; --accent-soft:#FCEFD2;
+  --good:#1D7A4C; --good-bg:#E2F3EA; --weak:#B3372B; --weak-bg:#FBE7E4; --close:#8A6100; --close-bg:#FBF0D6;
+  --side-bg:#161B24; --side-2:#1E2430; --side-3:#2B3240; --side-ink:#E9ECF1; --side-muted:#97A0AF; --side-line:#2B3240; --side-good:#58C48E;
+  --shadow:0 1px 2px rgba(20,26,34,.06),0 4px 14px rgba(20,26,34,.05);
+  --font-sans:"IBM Plex Sans","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1015; --surface:#161A21; --surface-2:#1E232C; --ink:#E7EAEF; --muted:#9AA2B0; --line:#272D37;
+  --accent:#F5B83A; --accent-fill:#F2AE1C; --accent-ink:#1E1500; --accent-soft:#2D2412;
+  --good:#5CC892; --good-bg:#14291F; --weak:#F08378; --weak-bg:#2E1917; --close:#F0C25A; --close-bg:#2C2411;
+  --side-bg:#090C10; --side-2:#12161D; --side-3:#1D232C; --side-ink:#E7EAEF; --side-muted:#8E97A6; --side-line:#1D232C; --side-good:#5CC892;
+  --shadow:0 1px 2px rgba(0,0,0,.4); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0D1015; --surface:#161A21; --surface-2:#1E232C; --ink:#E7EAEF; --muted:#9AA2B0; --line:#272D37;
+  --accent:#F5B83A; --accent-fill:#F2AE1C; --accent-ink:#1E1500; --accent-soft:#2D2412;
+  --good:#5CC892; --good-bg:#14291F; --weak:#F08378; --weak-bg:#2E1917; --close:#F0C25A; --close-bg:#2C2411;
+  --side-bg:#090C10; --side-2:#12161D; --side-3:#1D232C; --side-ink:#E7EAEF; --side-muted:#8E97A6; --side-line:#1D232C; --side-good:#5CC892;
+  --shadow:0 1px 2px rgba(0,0,0,.4); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent-fill);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 56px}
+
+/* top bar */
+.topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.mark{width:40px;height:40px;flex:none}
+.brand-name{margin:0;font-weight:700;font-size:18px;letter-spacing:.01em}
+.brand-sub{margin:0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surface-2);border-radius:11px;overflow-x:auto;max-width:100%}
+.tab{border:0;background:transparent;padding:7px 14px;border-radius:8px;color:var(--muted);font-weight:500;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:9px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn svg{width:16px;height:16px;flex:none}
+.btn.primary{background:var(--accent-fill);color:var(--accent-ink);border-color:transparent}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.ghost:hover{background:var(--surface-2);color:var(--ink)}
+.btn.danger{color:var(--weak);border-color:var(--weak)}
+.btn.sel-weak{background:var(--weak-bg);color:var(--weak);border-color:var(--weak)}
+.btn.sel-good{background:var(--good-bg);color:var(--good);border-color:var(--good)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start}
+.side{background:var(--side-bg);color:var(--side-ink);border-radius:18px;padding:16px;position:sticky;top:max(16px,env(safe-area-inset-top,0px));max-height:calc(100vh - 32px);display:flex;flex-direction:column;gap:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);background:var(--side-2);border:1px solid var(--side-line);border-radius:12px;padding:12px 4px}
+.stat{text-align:center;display:flex;flex-direction:column;gap:2px}
+.stat + .stat{border-left:1px solid var(--side-line)}
+.stat b{font-family:var(--font-mono);font-size:21px;font-weight:500;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--side-muted)}
+.side-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.side-head h2{margin:0;font-size:14px;font-weight:600;color:var(--side-muted);letter-spacing:.04em}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--side-line);background:var(--side-2);color:var(--side-ink)}
+.icon-btn:hover{background:var(--side-3)}
+.icon-btn svg{width:17px;height:17px}
+.list{overflow:auto;display:flex;flex-direction:column;gap:6px;min-height:0;padding-right:2px;scrollbar-color:var(--side-3) transparent}
+.folder{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:11px;border:1px solid var(--side-line);background:var(--side-2);color:var(--side-ink);text-align:left}
+.folder:hover{background:var(--side-3)}
+.folder[aria-current="true"]{background:var(--accent-fill);color:var(--accent-ink);border-color:transparent}
+.folder .count{font-family:var(--font-mono);font-size:12px;min-width:32px;text-align:center;padding:2px 6px;border-radius:6px;background:var(--side-3);color:var(--side-ink);font-variant-numeric:tabular-nums}
+.folder[aria-current="true"] .count{background:rgba(0,0,0,.14);color:var(--accent-ink)}
+.folder .fname{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.folder .fsub{display:block;font-size:11.5px;color:var(--side-muted);font-family:var(--font-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.folder[aria-current="true"] .fsub{color:rgba(30,21,0,.7)}
+.folder .pct{font-family:var(--font-mono);font-size:11.5px;color:var(--side-muted)}
+.folder[aria-current="true"] .pct{color:rgba(30,21,0,.75)}
+.meter{grid-column:1/-1;height:3px;border-radius:2px;background:var(--side-3);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--side-good)}
+.folder[aria-current="true"] .meter{background:rgba(0,0,0,.15)}
+.folder[aria-current="true"] .meter i{background:var(--accent-ink)}
+.divider{height:1px;background:var(--side-line);margin:4px 0}
+.sec{margin:8px 2px 0;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;color:var(--side-muted)}
+.sec-empty{margin:0;padding:10px 12px;border:1px dashed var(--side-3);border-radius:10px;font-size:12.5px;color:var(--side-muted)}
+.more{border:0;background:transparent;color:var(--accent-fill);font-size:12.5px;text-align:left;padding:4px 2px}
+.note.tip{background:var(--accent-soft);color:var(--ink)}
+.side-form{display:flex;gap:6px}
+.side-form input{flex:1;min-width:0;background:var(--side-2);border:1px solid var(--side-3);color:var(--side-ink);border-radius:9px;padding:7px 10px}
+.side-form button{background:var(--accent-fill);color:var(--accent-ink);border:0;border-radius:9px;padding:0 12px;font-weight:600}
+.sync{font-size:12px;color:var(--side-muted);display:flex;align-items:center;gap:6px;margin:0}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--side-muted);flex:none}
+.dot.on{background:var(--side-good)}
+.dot.warn{background:var(--accent-fill)}
+
+/* main */
+main{min-width:0;display:flex;flex-direction:column;gap:14px}
+.main-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{margin:0;font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.main-head h1{margin:2px 0 0;font-size:26px;line-height:1.25;text-wrap:balance}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{flex:1 1 240px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+.search svg{width:16px;height:16px;color:var(--muted);flex:none}
+.search input{border:0;background:transparent;padding:9px 0;width:100%;min-width:0;outline:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.chip b{font-family:var(--font-mono);font-weight:500;margin-left:4px;font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.cards{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:5px}
+.card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;color:var(--muted);background:var(--surface-2);padding:1px 8px;border-radius:6px}
+.pill{font-size:12px;font-weight:600;padding:1px 9px;border-radius:999px;margin-left:auto}
+.pill.l0{background:var(--surface-2);color:var(--muted)}
+.pill.l1{background:var(--weak-bg);color:var(--weak)}
+.pill.l2{background:var(--good-bg);color:var(--good)}
+.en{margin:2px 0 0;font-size:17px;font-weight:500;line-height:1.45;overflow-wrap:anywhere}
+.zh{margin:0;color:var(--muted);overflow-wrap:anywhere}
+.note{margin:4px 0 0;align-self:flex-start;max-width:100%;font-size:12.5px;color:var(--muted);background:var(--surface-2);padding:3px 8px;border-radius:6px;font-family:var(--font-mono),var(--font-sans);overflow-wrap:anywhere}
+.card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:28px;text-align:center;color:var(--muted)}
+.form{background:var(--surface);border:1px solid var(--accent-fill);border-radius:14px;padding:16px;display:grid;gap:10px}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.form input,.form textarea,.form select{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 10px;color:var(--ink);width:100%}
+.form textarea{resize:vertical;min-height:64px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.banner{background:var(--accent-soft);border:1px solid var(--accent-fill);border-radius:12px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.banner p{margin:0}
+
+/* flashcards */
+.flash{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:36px 24px;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+.flash .q{font-size:24px;font-weight:500;line-height:1.4;max-width:34ch;margin:0;text-wrap:balance;overflow-wrap:anywhere}
+.flash .a{font-size:20px;line-height:1.45;max-width:38ch;margin:0;color:var(--accent);text-wrap:balance;overflow-wrap:anywhere}
+.flash .q[lang="en"]{font-size:22px}
+.progress{display:flex;align-items:center;gap:12px;width:100%}
+.progress .bar{flex:1;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.progress .bar i{display:block;height:100%;background:var(--accent-fill);transition:width .25s}
+.progress span{font-family:var(--font-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+kbd{font-family:var(--font-mono);font-size:11.5px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--surface-2);color:var(--muted)}
+.big-btn{padding:10px 22px;font-size:15px;border-radius:11px}
+.seg{display:inline-flex;padding:3px;border-radius:10px;background:var(--surface-2);gap:2px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;color:var(--muted);font-size:13.5px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(360px,100%)}
+.summary div{border-radius:12px;padding:12px;display:flex;flex-direction:column}
+.summary b{font-family:var(--font-mono);font-size:28px;font-weight:500}
+.summary .w{background:var(--weak-bg);color:var(--weak)}
+.summary .g{background:var(--good-bg);color:var(--good)}
+
+/* email */
+.situation{background:var(--accent-soft);border-radius:12px;padding:12px 16px;display:grid;gap:2px}
+.situation b{font-size:12px;color:var(--accent);font-family:var(--font-mono);letter-spacing:.06em}
+.situation p{margin:0}
+.mail{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mail-row{display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px;padding:9px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.mail-row span:first-child{color:var(--muted);font-family:var(--font-mono);font-size:12.5px;padding-top:1px}
+.mail-body{padding:18px;white-space:pre-wrap;line-height:2.15;font-size:15.5px;overflow-wrap:anywhere}
+.ph{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);background:var(--surface-2);padding:2px 6px;border-radius:5px;white-space:nowrap}
+.blank{border:0;border-bottom:2px dashed var(--accent-fill);background:var(--accent-soft);border-radius:5px 5px 0 0;padding:1px 6px;color:var(--ink);max-width:100%;line-height:1.5}
+.blank::placeholder{color:var(--muted);opacity:.9;font-size:13px}
+.blank:focus{outline:none;border-bottom-style:solid;border-bottom-color:var(--accent)}
+.blank.ok{border-bottom:2px solid var(--good);background:var(--good-bg)}
+.blank.close{border-bottom:2px solid var(--close);background:var(--close-bg)}
+.blank.miss{border-bottom:2px solid var(--weak);background:var(--weak-bg)}
+.ans{font-size:13px;line-height:1.4;padding:1px 7px;border-radius:5px;margin-left:4px;white-space:normal}
+.ans.close{color:var(--close);background:var(--close-bg)}
+.ans.miss{color:var(--good);background:var(--good-bg)}
+.full mark{background:var(--good-bg);color:var(--good);padding:0 3px;border-radius:4px}
+.score{display:flex;gap:8px;flex-wrap:wrap;font-size:13.5px}
+.score span{padding:3px 10px;border-radius:999px;font-weight:500}
+.score .s-ok{background:var(--good-bg);color:var(--good)}
+.score .s-close{background:var(--close-bg);color:var(--close)}
+.score .s-miss{background:var(--weak-bg);color:var(--weak)}
+.mail-item .check{width:22px;height:22px;display:grid;place-items:center;border-radius:6px;background:var(--side-3);font-family:var(--font-mono);font-size:11px}
+.mail-item .check.done{background:var(--side-good);color:#08130D}
+.folder[aria-current="true"] .check{background:rgba(0,0,0,.15);color:var(--accent-ink)}
+
+.demo-note{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);border:1px dashed var(--accent-fill);background:var(--accent-soft);border-radius:10px;padding:8px 14px;margin-bottom:16px}
+.demo-note a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-size:14px;box-shadow:var(--shadow);z-index:20;max-width:calc(100vw - 32px)}
+.modal{position:fixed;inset:0;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:16px;z-index:30}
+.modal-box{background:var(--surface);border-radius:16px;padding:18px;width:min(560px,100%);display:grid;gap:10px}
+.modal-box h3{margin:0;font-size:17px}
+.modal-box textarea{width:100%;min-height:200px;font-family:var(--font-mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--ink)}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;max-height:none}
+  .list{flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .list .folder{width:210px;flex:none}
+  .list .divider,.list .sec{display:none}
+  .list .sec-empty{flex:none;width:220px}
+}
+@media (max-width:520px){
+  .main-head h1{font-size:22px}
+  .flash{padding:28px 16px}
+  .flash .q{font-size:20px}
+  .mail-body{padding:14px;font-size:15px}
+  .mail-row{padding:9px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="demo-note"><span>作品集展示版：收錄前 7 天的課程（實際使用中每天新增）。練習進度只存在你的瀏覽器。</span><a href="../products.html">← 回作品集</a></div>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="var(--accent-fill)"/>
+        <path d="M17 37.8h6" stroke="var(--bg)" stroke-width="3" stroke-linecap="round"/>
+        <g fill="var(--accent-ink)" opacity=".85">
+          <rect x="11" y="11" width="5" height="5" rx="1"/><rect x="17.5" y="11" width="5" height="5" rx="1"/><rect x="24" y="11" width="5" height="5" rx="1"/>
+          <rect x="11" y="17.5" width="5" height="5" rx="1"/><rect x="17.5" y="17.5" width="5" height="5" rx="1"/><rect x="24" y="17.5" width="5" height="5" rx="1"/>
+          <rect x="11" y="24" width="5" height="5" rx="1"/><rect x="17.5" y="24" width="5" height="5" rx="1"/><rect x="24" y="24" width="5" height="5" rx="1"/>
+        </g>
+      </svg>
+      <div>
+        <p class="brand-name">實習英文句庫</p>
+        <p class="brand-sub">每天的外商英文課程，一天一天累積</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="練習模式">
+      <button class="tab" role="tab" id="tab-lib" data-mode="lib">句庫</button>
+      <button class="tab" role="tab" id="tab-flash" data-mode="flash">翻卡練習</button>
+      <button class="tab" role="tab" id="tab-mail" data-mode="mail">Email 填空</button>
+    </nav>
+    <div class="tools">
+      <button class="btn" id="rateBtn" title="朗讀速度"></button>
+      <button class="btn" id="exportBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>匯出</button>
+      <button class="btn" id="importBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0L8 7m4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>匯入</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="side" id="side"></aside>
+    <main id="main"></main>
+  </div>
+</div>
+<div id="toastHost"></div>
+<div id="modalHost"></div>
+
+<script>
+/* ---------------- 內建內容 ---------------- */
+const FOLDERS = [{id:'mine', zh:'我的句子', en:'My sentences'}];
+const SEED_CARDS = [];
+const EMAILS = [];
+
+/* ---------------- 每日課程：排程每天寫進資料庫的 daily 集合 ---------------- */
+const DAILY_KEY='intern-english-daily';
+let daily=[];
+const DEMO_DAILY=[{"date": "2026-11-19", "day": 1, "items": [{"cat": "Email", "examples": [{"en": "Please find attached this week's inventory data.", "zh": "附上本週的庫存資料。"}, {"en": "Attached is the updated stock list.", "zh": "附件是更新後的庫存清單。"}], "term": "Please find attached... / Attached is...", "tip": "也可以寫 I've attached...；不要寫 Please kindly find the attached file，太過客套。", "when": "寄週報原始資料、檔案給主管時", "zh": "附件在此"}, {"cat": "Email", "examples": [{"en": "Could you please send me the stock count by Thursday 3 PM?", "zh": "可以請你週四下午三點前把盤點數量寄給我嗎？"}], "term": "Could you please... by [time]?", "tip": "一定要附具體時間，對方才知道要排在什麼優先順序。", "when": "請同事提供資料、確認數量時", "zh": "請對方在期限前完成某事"}, {"cat": "職場", "examples": [{"en": "I'll send the weekly report data by EOD.", "zh": "我今天下班前寄出週報資料。"}], "term": "EOD / COB", "tip": "跨時區時寫清楚是誰的下班時間，例如 by EOD Taiwan time。", "when": "約定今天內要完成的事", "zh": "當天下班前（end of day / close of business）"}, {"cat": "會議", "examples": [{"en": "Good morning, everyone. Let's get started. Today we'll cover the inventory update and next week's schedule.", "zh": "早安，我們開始吧。今天會談庫存更新和下週的時程。"}], "term": "Let's get started. Today we'll cover...", "tip": "開場直接講議程，比 Let's begin our meeting now 更自然。", "when": "主持每週會議的第一句", "zh": "主持會議開場、帶出議程"}, {"cat": "會議", "examples": [{"en": "To recap, the action items are: Kevin will check the spare parts, and I'll update the tracking sheet.", "zh": "總結一下待辦：Kevin 確認備品，我更新追蹤表。"}], "term": "To recap, the action items are...", "tip": "每個 action item 都要講清楚誰負責、什麼時候完成。", "when": "週會結束前收尾", "zh": "會議結尾總結待辦事項與負責人"}], "practice": {"body": "Hi Amy,\n\n[[Please find attached|附件是]] this week's inventory data. [[Could you please|可以請你]] check the numbers and reply [[by EOD|今天下班前]]?\n\n[[To recap|總結一下]] from today's meeting, I'll update the tracking sheet once you confirm.\n\nThanks,\nTiffany", "situation": "用 Day 1 的用法，寄本週庫存資料給 Amy，請她今天下班前確認數字。", "subject": "[Action Required] Weekly report data", "title": "寄週報資料給 Amy", "to": "Amy"}}, {"date": "2026-11-20", "day": 2, "items": [{"cat": "Email", "examples": [{"en": "I'm following up on the inventory list I sent on Tuesday. Could you share an update by EOD?", "zh": "我想追蹤週二寄的庫存清單，今天下班前可以給我進度嗎？"}], "term": "I'm following up on...", "tip": "不要寫 I'm urging you，語氣太重。要更輕一點用 Just a quick follow-up on...。", "when": "物料盤點表或週報資料對方還沒回你", "zh": "我想追蹤一下…的進度（禮貌催進度）"}, {"cat": "Email", "examples": [{"en": "Noted, thanks. I'll update the Excel sheet today.", "zh": "了解，謝謝。我今天會更新 Excel 表。"}], "term": "Noted, thanks. / Thanks for the update.", "tip": "台式英文常寫 Received.，聽起來很冷。Noted, thanks. 在外商更自然。", "when": "主管或同事通知你事情，你只需要確認收到", "zh": "已知悉，謝謝"}, {"cat": "職場", "examples": [{"en": "FYI, the team lunch is confirmed for Friday at 12:00.", "zh": "供參考，團隊聚餐已確認週五 12:00。"}], "term": "FYI (for your information)", "tip": "FYI 不等於有任務。若需要對方行動，要明說 Action needed。", "when": "CC 資訊給團隊、轉寄信件時", "zh": "供你參考，不需要你回覆或處理"}, {"cat": "會議", "examples": [{"en": "Sorry, I didn't catch the last part. Could you repeat that?", "zh": "抱歉，最後一段我沒聽清楚，可以再說一次嗎？"}], "term": "Sorry, I didn't catch that. Could you repeat that?", "tip": "直接說 What? 很失禮；聽不懂就開口問，不用不好意思。", "when": "Teams 收音不好，或對方講太快、有口音", "zh": "抱歉，我沒聽清楚，可以再說一次嗎？"}, {"cat": "會議", "examples": [{"en": "Michael, would you like to add anything on the material status?", "zh": "Michael，關於物料狀況你有要補充的嗎？"}], "term": "[Name], would you like to add anything?", "tip": "比 Do you have any comment? 柔和；點名時先叫名字再提問。", "when": "你主持會議，想讓比較安靜的人發言", "zh": "○○，你有要補充的嗎？"}], "practice": {"body": "Hi Amy,\n\n[[I'm following up on|我想追蹤]] the weekly report data. Could you send it by EOD today?\n[[FYI|供你參考]], the meeting has moved to 3 PM tomorrow.\n\nThanks,\nTiffany\n\n— Amy's reply —\n[[Noted, thanks|了解，謝謝]]. I'll send it this afternoon.", "situation": "Amy 還沒給你週報資料，你寫信追進度，順便通知會議改時間；Amy 回信確認收到。", "subject": "Follow-up: Weekly Report Data", "title": "追週報資料", "to": "Amy"}}, {"date": "2026-11-21", "day": 3, "items": [{"cat": "Email", "examples": [{"en": "Apologies for the delay. I was at the fab site yesterday.", "zh": "抱歉延遲回覆，我昨天在廠區。"}, {"en": "Sorry for the late reply. Here is the updated stock list.", "zh": "抱歉晚回，這是更新後的庫存清單。"}], "term": "Apologies for the delay. / Sorry for the late reply.", "tip": "道歉一句就夠，接著直接給答案，不要寫 I am so sorry, please forgive me。", "when": "隔了一兩天才回主管或同事的信", "zh": "抱歉這麼晚才回覆"}, {"cat": "Email", "examples": [{"en": "[Action Required] Please confirm weekly report data by Fri", "zh": "【需處理】請在週五前確認週報資料"}, {"en": "[FYI] Team lunch moved to Thursday", "zh": "【參考】團隊聚餐改到週四"}], "term": "[Action Required] / [FYI] in the subject line", "tip": "不要每封都標 Urgent，標太多對方就不當一回事。", "when": "寄週報原始資料、聚餐報名、請人確認物料數量時", "zh": "在主旨標明對方需要做什麼"}, {"cat": "職場", "examples": [{"en": "What's the ETA for the spare parts?", "zh": "備品預計什麼時候到？"}, {"en": "ETA is Wednesday afternoon.", "zh": "預計週三下午到。"}], "term": "ETA (estimated time of arrival)", "tip": "也能問工作進度（ETA on the report?）；更正式可說 expected delivery date。", "when": "追物料進度、回報任務何時完成", "zh": "預計到貨或完成的時間"}, {"cat": "會議", "examples": [{"en": "Let me make sure I understand. So you're saying we should update the inventory before Friday?", "zh": "我確認一下，你是說週五前要更新庫存嗎？"}], "term": "Let me make sure I understand. So you're saying...?", "tip": "直接問 Do you mean...? 聽起來像在質疑；So you're saying...? 比較柔和。", "when": "主管交辦事項時，用自己的話複述一次", "zh": "我確認一下我的理解，你的意思是……？"}, {"cat": "會議", "examples": [{"en": "Sorry to interrupt, may I add something? The parts arrived this morning.", "zh": "抱歉打斷，我補充一下，備品今天早上到了。"}], "term": "Sorry to interrupt, may I add something?", "tip": "不要只說 Wait! 或 No.；插話前先道歉一句，語氣會禮貌很多。", "when": "想在別人講話中途插入重要資訊", "zh": "抱歉打斷一下，我可以補充嗎？"}], "practice": {"body": "Hi Ming,\n\n[[Apologies for the delay|抱歉延遲回覆]]. I checked the stock list this morning.\nCould you confirm the [[ETA|預計到貨時間]] for the spare parts by EOD today?\nOnce confirmed, I'll update the weekly report data.\n\nThanks,\nTiffany", "situation": "你晚了一天才回 Ming 的信，現在要請他今天確認備品的預計到貨時間。", "subject": "[Action Required] Spare parts ETA – please confirm", "title": "確認備品到貨時間", "to": "Ming"}}, {"date": "2026-11-22", "day": 4, "items": [{"cat": "Email", "examples": [{"en": "Looping in Kevin, as he manages the stock count.", "zh": "我把 Kevin 加進來，他負責盤點。"}], "term": "Looping in [Name]. / I've copied [Name].", "tip": "不要寫 I CC you，要說 I've copied you 或 I've CC'd you。", "when": "物料問題需要 Material Handler 或主管一起看時", "zh": "把相關同事拉進信件（CC）"}, {"cat": "Email", "examples": [{"en": "I've updated the inventory sheet. Let me know if you have any questions.", "zh": "我已更新庫存表，有問題請告訴我。"}], "term": "Let me know if you have any questions. / Feel free to reach out.", "tip": "比 Please feel free to contact me anytime 簡潔；熟的同事用 Feel free to reach out.。", "when": "寄週報原始資料、交付檔案給主管後的結尾", "zh": "有任何問題請告訴我"}, {"cat": "職場", "examples": [{"en": "I'll be OOO next Friday. Jason will cover for me.", "zh": "我下週五休假，Jason 會代理我。"}], "term": "OOO (out of office)", "tip": "不要說 I take a leave，說 I'll be out of office / on leave。", "when": "請假、寫自動回覆、告知同事誰不在", "zh": "不在辦公室、休假或外出"}, {"cat": "會議", "examples": [{"en": "This is a good point, but let's take this offline so we can stay on schedule.", "zh": "這點很好，但我們會後再談，才能照進度走。"}], "term": "Let's take this offline.", "tip": "最好接著說明誰負責後續，例如 I'll set up a quick call.", "when": "討論太細或只和少數人有關，避免耽誤大家", "zh": "這個議題我們會後再單獨討論"}, {"cat": "會議", "examples": [{"en": "I see your point, but Thursday might be tight for the team. Could we try Friday?", "zh": "我理解你的意思，但週四對團隊可能太趕，能改週五嗎？"}], "term": "I see your point, but...", "tip": "直接說 No, I disagree. 太硬；這句是安全的好用句。", "when": "對聚餐日期、會議時間或工作分配有不同意見時", "zh": "我了解你的看法，不過……（委婉表達不同意）"}], "practice": {"body": "Hi Anna,\n\nI've attached this week's inventory data. [[Looping in|把…加進來]] Kevin for the stock count figures.\nI'll be [[OOO|不在辦公室]] on Friday, so please send any updates by Thursday.\n[[Let me know if you have any questions|有問題請告訴我]].\n\nBest,\nTiffany", "situation": "寄本週庫存資料給 Anna，把負責盤點的 Kevin 加進信件，並說明你週五不在。", "subject": "[FYI] Weekly Report Data – Week 47", "title": "寄庫存資料並交代休假", "to": "Anna; cc: Kevin"}}, {"date": "2026-11-23", "day": 5, "items": [{"cat": "Email", "examples": [{"en": "I'm reaching out to check the stock level of the cleanroom wipes.", "zh": "我想跟您確認無塵擦拭布的庫存量。"}], "term": "I'm writing to... / I'm reaching out to...", "tip": "荷蘭同事偏好直接，第一句就講目的即可。", "when": "第一次寫信給不熟的同事，例如詢問物料狀況", "zh": "我寫這封信是想…（開頭說明來意）"}, {"cat": "Email", "examples": [{"en": "Thanks for your support. Best regards, Tiffany", "zh": "謝謝您的支援。Tiffany 敬上"}], "term": "Best regards, / Kind regards, / Thanks,", "tip": "Sincerely yours 太像求職信，日常內部信不太用。", "when": "Best regards 一般正式信；Thanks 請對方幫忙；同事之間可只寫名字", "zh": "信件結尾署名用語"}, {"cat": "職場", "examples": [{"en": "Could you send me the part number ASAP?", "zh": "可以請您盡快給我料號嗎？"}], "term": "ASAP (as soon as possible)", "tip": "ASAP 聽起來有壓力，對主管或不熟的人改成 by 3 PM today 這種明確時間。", "when": "真的緊急的事，例如缺料影響機台作業", "zh": "越快越好"}, {"cat": "會議", "examples": [{"en": "Can everyone see my screen? I'll share the weekly report draft.", "zh": "大家看得到我的畫面嗎？我來分享週報草稿。"}], "term": "Can everyone see my screen?", "tip": "不要說 Can you see my computer?，講 screen 或 slide 才自然。", "when": "在 Teams 分享 Excel 或 PowerPoint 時", "zh": "大家看得到我的畫面嗎？"}, {"cat": "會議", "examples": [{"en": "That's all from my side. Let's wrap up here. Thanks, everyone.", "zh": "我這邊就到這裡，今天先結束，謝謝大家。"}], "term": "That's all from my side. Let's wrap up here.", "tip": "結束前可先問 Any other questions?，給大家最後發問的機會。", "when": "報告結束，或主持時準備收尾", "zh": "我這邊說完了，今天就到這裡"}], "practice": {"body": "Hi Amy,\n\n[[I'm reaching out to|我來信是想]] request this week's inventory data. Could you send it by 3 PM today? If it's urgent on your side, let me know [[ASAP|盡快]].\n\n[[Thanks|謝謝（結尾）]],\nTiffany", "situation": "第一次寫信跟 Amy 要本週的庫存資料，請她下午三點前給你。", "subject": "[Action Required] Weekly report data", "title": "索取本週庫存資料", "to": "Amy"}}, {"date": "2026-11-24", "day": 6, "items": [{"cat": "Email", "examples": [{"en": "Does Thursday 10:00 work for you? We can go through the inventory list together.", "zh": "週四 10:00 你方便嗎？我們可以一起看庫存清單。"}], "term": "Does [time] work for you? / Are you available on...?", "tip": "直接問就好，不用寫 Would you be so kind as to...。", "when": "約週會、約物料盤點時間", "zh": "這個時間你方便嗎？"}, {"cat": "Email", "examples": [{"en": "Let me check with the Material Handler and get back to you by EOD.", "zh": "我先跟物料人員確認，今天下班前回覆你。"}], "term": "Let me check and get back to you.", "tip": "最好附上時間點（by EOD / tomorrow morning），不要只說 I will check。", "when": "被問到不確定的事，例如某料號的庫存", "zh": "我先確認一下，再回覆你"}, {"cat": "職場", "examples": [{"en": "Venue: TBC. I'll confirm after checking the headcount.", "zh": "地點待確認，我確認人數後再通知。"}], "term": "TBD / TBC", "tip": "TBD 是還沒決定，TBC 是大致有了等確認，別混用。", "when": "會議時間、地點、聚餐餐廳還沒敲定時", "zh": "TBD 待定；TBC 待確認（已有暫定內容）"}, {"cat": "會議", "examples": [{"en": "Thanks, everyone. Moving on to the next item: the weekly report.", "zh": "謝謝大家。接下來是下一項：週報。"}], "term": "Moving on to the next item.", "tip": "討論拖太久時可加 In the interest of time, let's move on.", "when": "主持週會，一項講完要換下一項", "zh": "我們進入下一個議題"}, {"cat": "會議", "examples": [{"en": "That makes sense. Let's send the draft on Friday.", "zh": "有道理，我們週五寄出草稿。"}], "term": "That makes sense. / Sounds good to me.", "tip": "別只用 Yes, yes 或 OK；對主管用 That makes sense 更穩。", "when": "同意同事或主管的提議", "zh": "有道理／我覺得可以"}], "practice": {"body": "Hi Wei,\n\n[[Does Wednesday 14:00 work for you|週三 14:00 你方便嗎]] for the weekly meeting? The room is [[TBC|待確認]].\n[[Let me check|我先確認一下]] the availability and [[get back to you|回覆你]] by EOD.\n\nThanks,\nTiffany", "situation": "幫團隊約每週 CS 會議的時間，會議室還沒確定。", "subject": "Weekly CS Meeting – Time TBC", "title": "約週會時間", "to": "Wei"}}, {"date": "2026-11-25", "day": 7, "items": [{"cat": "Email", "examples": [{"en": "Forwarding this for your reference. The parts are expected to arrive on Friday.", "zh": "轉寄給你參考。零件預計週五到貨。"}, {"en": "Please see below. Could you confirm if this matches our stock record?", "zh": "請看下方信件。可以幫我確認這和我們的庫存紀錄是否一致嗎？"}], "term": "Forwarding this for your reference. / Please see below.", "tip": "不要什麼都不寫就直接轉寄，至少一句話說明為什麼轉或要對方做什麼。", "when": "把供應商到貨通知、物料相關信件轉給 Material Handler 或主管", "zh": "轉寄信件時說明為什麼轉給對方"}, {"cat": "Email", "examples": [{"en": "Just a quick reminder that weekly report inputs are due this Thursday EOD.", "zh": "提醒一下，週報資料請在本週四下班前提供。"}], "term": "Just a quick reminder that...", "tip": "following up 是追對方還沒回的事，reminder 是提醒即將到來的期限。", "when": "提醒大家交週報資料、回覆聚餐調查、參加週會", "zh": "溫和提醒截止日、活動或會議"}, {"cat": "職場", "examples": [{"en": "Can we align on the agenda before Monday's meeting?", "zh": "週一開會前，我們可以先確認一下議程嗎？"}, {"en": "Let's get aligned with the MH team on the stock numbers first.", "zh": "我們先跟物料團隊對一下庫存數字。"}], "term": "align (on) / get aligned", "tip": "說 align on [事情] 或 align with [人]，不要說 align with each other's mind。", "when": "會前和主管確認議程，或跟同事確認數字和做法", "zh": "讓大家的想法、方向或資訊一致"}, {"cat": "會議", "examples": [{"en": "Hi Mark, I think you're on mute.", "zh": "嗨 Mark，你好像還在靜音。"}, {"en": "Can you hear me okay? Let me know if my audio cuts out.", "zh": "聽得到我嗎？如果我的聲音斷斷續續請告訴我。"}], "term": "I think you're on mute. / Can you hear me okay?", "tip": "You're on mute 是固定說法，不要說 Your voice is closed 或 Open your mic。", "when": "主持週會、輪到同事報告卻聽不到聲音時", "zh": "提醒對方沒開麥克風，或確認對方聽得到自己"}, {"cat": "會議", "examples": [{"en": "That's the inventory update. Any questions before we move on?", "zh": "以上是庫存更新。進入下一項之前，大家有問題嗎？"}], "term": "Any questions before we move on?", "tip": "問完停 2～3 秒再繼續，線上會議有延遲，太快接下一項別人會來不及開口。", "when": "主持週會時，報告完一段數據或一個議題之後", "zh": "進入下一個議題前，確認大家有沒有問題"}], "practice": {"body": "Hi team,\n\n[[Just a quick reminder that|提醒一下]] our team dinner is next Wednesday at 6:30 pm.\nI'm [[forwarding|轉寄]] the restaurant details below [[for your reference|給大家參考]].\nI've [[aligned with|跟…確認好]] Jessica on the budget, so we're all set.\nPlease reply by Friday EOD if you can join.\n\nThanks,\nTiffany", "situation": "提醒大家下週三的團隊聚餐，轉寄餐廳資訊，並說明預算已經跟 Jessica 確認好。", "subject": "[Action Required] Team Dinner – Please Reply by Friday", "title": "團隊聚餐提醒", "to": "Team"}}];
+function str(v,n){return typeof v==='string'?v.slice(0,n):''}
+function normalizeDay(d){
+  if(!d||typeof d!=='object') return null;
+  const day=Math.floor(+d.day); if(!(day>0)) return null;
+  const f='day-'+day, cards=[];
+  const out={day,date:str(d.date,10),f,items:[],cards,email:null};
+  (Array.isArray(d.items)?d.items.slice(0,10):[]).forEach((it,i)=>{
+    if(!it||typeof it!=='object') return;
+    const term=str(it.term,300); if(!term) return;
+    const cat=str(it.cat,10)||'職場';
+    out.items.push({cat,term});
+    cards.push({id:'d'+day+'-'+i,f,en:term,zh:str(it.zh,300),note:cat+(it.when?'｜'+str(it.when,300):''),tip:str(it.tip,300),daily:true});
+    (Array.isArray(it.examples)?it.examples.slice(0,4):[]).forEach((ex,j)=>{
+      const en=str(ex&&ex.en,600); if(!en) return;
+      cards.push({id:'d'+day+'-'+i+'-'+j,f,en,zh:str(ex.zh,600),note:cat+'｜例句：'+term,daily:true});
+    });
+  });
+  const p=d.practice;
+  if(p&&typeof p==='object'&&typeof p.body==='string'){
+    const m={id:'daily-'+day,zh:'Day '+day+'・'+(str(p.title,40)||'今日小練習'),en:out.date,situation:str(p.situation,400)||'用今天學的用法完成這封信。',to:str(p.to,120)||'Team',subject:str(p.subject,200),body:p.body.slice(0,4000),day};
+    m.parts=parseBody(m.body); m.blanks=m.parts.filter(x=>x.t==='b');
+    if(m.blanks.length) out.email=m;
+  }
+  return out;
+}
+function setDaily(list){
+  const byDay=new Map();
+  (Array.isArray(list)?list:[]).forEach(d=>{const n=normalizeDay(d); if(n) byDay.set(n.day,n);});
+  daily=[...byDay.values()].sort((a,b)=>b.day-a.day);
+}
+function allEmails(){return daily.filter(d=>d.email).map(d=>d.email)}
+
+function parseBody(s){
+  const out=[]; const re=/\[\[(.+?)\|(.+?)\]\]|\[([^\[\]\n]+)\]/g; let last=0, m, bi=0;
+  while((m=re.exec(s))){
+    if(m.index>last) out.push({t:'x',v:s.slice(last,m.index)});
+    if(m[1]!==undefined) out.push({t:'b',ans:m[1],hint:m[2],i:bi++}); else out.push({t:'p',v:m[3]});
+    last=re.lastIndex;
+  }
+  if(last<s.length) out.push({t:'x',v:s.slice(last)});
+  return out;
+}
+
+/* ---------------- 狀態與儲存 ---------------- */
+const LS_KEY='intern-english-v1', PREF_KEY='intern-english-prefs';
+const blankState=()=>({v:1,folders:[],cards:[],progress:{},emails:{},updatedAt:0});
+let state=blankState();
+const ui={mode:'lib',folder:'all',filter:'all',q:'',adding:false,addingFolder:false,pendingDel:null,pendingFolderDel:false,mail:null,allDays:false,rate:1,dir:'zh2en',importing:null};
+const flash={active:false,key:null,queue:[],i:0,revealed:false,res:{1:0,2:0}};
+const drafts={};
+let cloud='local', docRef=null, dlCap=null, saveTimer=null, writing=false, dirty=false;
+
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function normalize(s){
+  const n=blankState(); if(!s||typeof s!=='object') return n;
+  if(Array.isArray(s.folders)) n.folders=s.folders.filter(f=>f&&typeof f.id==='string'&&typeof f.zh==='string').map(f=>({id:f.id,zh:f.zh.slice(0,60),en:String(f.en||'').slice(0,60)}));
+  const fids=new Set(FOLDERS.map(f=>f.id).concat(n.folders.map(f=>f.id)));
+  if(Array.isArray(s.cards)) n.cards=s.cards.filter(c=>c&&typeof c.id==='string'&&typeof c.en==='string'&&(fids.has(c.f)||/^day-\d+$/.test(c.f))).map(c=>({id:c.id,f:c.f,en:c.en.slice(0,600),zh:String(c.zh||'').slice(0,600),note:String(c.note||'').slice(0,300)}));
+  if(s.progress&&typeof s.progress==='object') for(const k in s.progress){const v=s.progress[k]; if(v===1||v===2) n.progress[k]=v;}
+  if(s.emails&&typeof s.emails==='object') for(const k in s.emails){const e=s.emails[k]; if(e&&typeof e.ok==='number') n.emails[k]={ok:e.ok,close:+e.close||0,total:+e.total||0};}
+  n.updatedAt=+s.updatedAt||0; return n;
+}
+function hasContent(s){return s.cards.length||s.folders.length||Object.keys(s.progress).length||Object.keys(s.emails).length}
+function loadLocal(){
+  try{const raw=localStorage.getItem(LS_KEY); if(raw) state=normalize(JSON.parse(raw));}catch(e){}
+    try{const p=JSON.parse(localStorage.getItem(PREF_KEY)||'{}'); if(p.rate) ui.rate=p.rate; if(p.dir) ui.dir=p.dir; if(p.mode) ui.mode=p.mode;}catch(e){}
+}
+function savePrefs(){try{localStorage.setItem(PREF_KEY,JSON.stringify({rate:ui.rate,dir:ui.dir,mode:ui.mode}))}catch(e){}}
+function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify(state))}catch(e){}}
+function persist(){
+  state.updatedAt=Date.now(); saveLocal();
+  if(docRef){dirty=true; clearTimeout(saveTimer); saveTimer=setTimeout(flush,700);}
+}
+async function flush(){
+  if(!docRef||writing||!dirty) return;
+  writing=true; dirty=false;
+  try{ await docRef.set(clone(state)); setCloud('cloud'); }
+  catch(e){
+    const c=e&&e.code;
+    if(c==='invalid_argument'||c==='not_granted'||c==='revoked'||c==='capability_disabled'||c==='capability_removed'){docRef=null; setCloud('local');}
+    else if(c==='quota_exceeded'){setCloud('full');}
+    else {dirty=true; setCloud('offline');}
+  }
+  writing=false;
+  if(dirty&&docRef){clearTimeout(saveTimer); saveTimer=setTimeout(flush,2000);}
+}
+async function initCloud(){
+  const C=window.claude;
+  if(!C||typeof C.use!=='function'){setCloud('local');return;}
+  setCloud('connecting');
+  C.use('downloads').then(d=>{dlCap=d}).catch(()=>{});
+  try{
+    const [db,user]=await Promise.all([C.use('db'),C.use('user')]);
+    if(db) subscribeDaily(db);
+    if(!db||!user){setCloud('local');return;}
+    const id=await user.id();
+    if(!id){setCloud('local');return;}
+    docRef=db.doc('data/users/'+id+'/state');
+    let settled=false;
+    const timer=setTimeout(()=>{if(!settled) setCloud('offline')},10000);
+    docRef.onSnapshot(snap=>{
+      if(snap.metadata.hasPendingWrites) return;
+      const data=snap.exists?snap.data():null;
+      if(data){
+        const remote=normalize(clone(data));
+        if(remote.updatedAt>state.updatedAt){state=remote; saveLocal(); render();}
+        else if(remote.updatedAt<state.updatedAt&&!snap.metadata.fromCache){dirty=true; flush();}
+      } else if(!snap.metadata.fromCache&&hasContent(state)){dirty=true; flush();}
+      if(!snap.metadata.fromCache){settled=true; clearTimeout(timer); if(cloud!=='full') setCloud('cloud');}
+    },()=>{settled=true; clearTimeout(timer); setCloud('offline');});
+  }catch(e){setCloud('local');}
+}
+function subscribeDaily(db){
+  try{
+    db.collection('daily').limit(1000).onSnapshot(snap=>{
+      const rows=snap.docs.map(d=>d.data());
+      if(snap.metadata.fromCache&&!rows.length) return;
+      setDaily(rows);
+      try{localStorage.setItem(DAILY_KEY,JSON.stringify(rows))}catch(e){}
+      const typing=document.activeElement&&document.activeElement.matches('input,textarea,select');
+      if(!typing) render(); else renderSide();
+    },()=>{});
+  }catch(e){}
+}
+function setCloud(s){cloud=s; const el=document.getElementById('syncNote'); if(el) el.outerHTML=syncHTML();}
+function syncHTML(){
+  const m={local:['','展示版：進度只存在這個瀏覽器'],connecting:['warn','連線中…'],cloud:['on','進度已存到你的帳號'],offline:['warn','暫時連不上，先存在這個瀏覽器'],full:['warn','雲端空間已滿，請先匯出備份']}[cloud];
+  return `<p class="sync" id="syncNote"><span class="dot ${m[0]}"></span>${m[1]}</p>`;
+}
+
+/* ---------------- 工具 ---------------- */
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function myFolders(){return FOLDERS.concat(state.folders.map(f=>({...f,custom:true})))}
+function dayFolders(){return daily.map(d=>({id:d.f,zh:'Day '+d.day,en:d.date,daily:true}))}
+function allFolders(){return dayFolders().concat(myFolders())}
+function allCards(){const out=[]; daily.slice().reverse().forEach(d=>out.push(...d.cards)); return out.concat(state.cards.map(c=>({...c,custom:true})));}
+function folderById(id){return allFolders().find(f=>f.id===id)}
+function lvl(id){return state.progress[id]||0}
+function cardsIn(key){const a=allCards(); if(key==='all') return a; if(key==='weak') return a.filter(c=>lvl(c.id)===1); return a.filter(c=>c.f===key);}
+function shuffle(a){a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+function uid(p){return p+'-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+const LV=['未練習','不熟','會了'];
+const I={
+  speak:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  folderPlus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5h5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>'
+};
+
+/* 朗讀 */
+const synth=('speechSynthesis' in window)?window.speechSynthesis:null;
+let voice=null;
+function pickVoice(){ if(!synth) return; const vs=synth.getVoices().filter(v=>/^en[-_]/i.test(v.lang)); voice=vs.find(v=>/en[-_]US/i.test(v.lang)&&/Samantha|Google|Natural|Aria|Jenny/i.test(v.name))||vs.find(v=>/en[-_]US/i.test(v.lang))||vs[0]||null; }
+if(synth){pickVoice(); try{synth.addEventListener('voiceschanged',pickVoice)}catch(e){}}
+function speak(text){
+  if(!synth){toast('這個瀏覽器不支援朗讀');return;}
+  try{synth.cancel(); const u=new SpeechSynthesisUtterance(text.replace(/\[[^\]]*\]/g,'').replace(/\s+\/\s+/g,'. ')); u.lang='en-US'; u.rate=ui.rate; if(voice) u.voice=voice; synth.speak(u);}catch(e){toast('朗讀失敗，請再試一次');}
+}
+
+/* ---------------- 畫面 ---------------- */
+const side=document.getElementById('side'), main=document.getElementById('main');
+function render(){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.mode===ui.mode)));
+  document.getElementById('rateBtn').textContent='語速 '+(ui.rate===1?'1.0':'0.8')+'×';
+  renderSide();
+  if(ui.mode==='lib') renderLib(); else if(ui.mode==='flash') renderFlash(); else renderMail();
+}
+function statsHTML(){
+  const cards=allCards(); const known=cards.filter(c=>lvl(c.id)===2).length;
+  if(ui.mode==='mail'){
+    const ems=allEmails(); const tried=ems.filter(m=>state.emails[m.id]);
+    const tot=tried.reduce((a,m)=>a+m.blanks.length,0);
+    const ok=tried.reduce((a,m)=>a+state.emails[m.id].ok,0);
+    return `<div class="stats"><div class="stat"><b>${ems.length}</b><span>練習信</span></div><div class="stat"><b>${tried.length}</b><span>已練習</span></div><div class="stat"><b>${tot?Math.round(ok/tot*100):0}%</b><span>答對率</span></div></div>`;
+  }
+  return `<div class="stats"><div class="stat"><b>${daily.length}</b><span>已上天數</span></div><div class="stat"><b>${cards.length}</b><span>句子總數</span></div><div class="stat"><b>${known}</b><span>已會</span></div></div>`;
+}
+function folderBtn(key,name,sub,list){
+  const n=list.length, k=list.filter(c=>lvl(c.id)===2).length, pct=n?Math.round(k/n*100):0;
+  return `<button class="folder" data-act="folder" data-id="${esc(key)}" aria-current="${ui.folder===key}">
+    <span class="count">${n}</span><span style="min-width:0"><span class="fname">${esc(name)}</span><span class="fsub">${esc(sub)}</span></span><span class="pct">${pct}%</span>
+    <span class="meter"><i style="width:${pct}%"></i></span></button>`;
+}
+function renderSide(){
+  let h=statsHTML();
+  if(ui.mode==='mail'){
+    const ems=allEmails();
+    h+=`<div class="side-head"><h2>每日小練習</h2></div><div class="list">`;
+    if(!ems.length) h+=`<p class="sec">排程上課後，每天的小練習會出現在這裡。</p>`;
+    ems.forEach(m=>{const r=state.emails[m.id];
+      h+=`<button class="folder mail-item" data-act="mail" data-id="${esc(m.id)}" aria-current="${ui.mail===m.id}">
+        <span class="check ${r?'done':''}">${r?'✓':m.day}</span><span style="min-width:0"><span class="fname">${esc(m.zh)}</span><span class="fsub">${esc(m.en)}</span></span><span class="pct">${r?r.ok+'/'+r.total:''}</span></button>`;});
+    h+=`</div>`;
+  } else {
+    h+=`<div class="side-head"><h2>資料夾</h2><button class="icon-btn" data-act="addFolder" aria-label="新增資料夾" title="新增資料夾">${I.folderPlus}</button></div>`;
+    if(ui.addingFolder) h+=`<form class="side-form" data-form="folder"><input id="newFolderName" maxlength="40" placeholder="資料夾名稱，例如：部門專有名詞" autocomplete="off"><button type="submit">新增</button></form>`;
+    h+=`<div class="list">`+folderBtn('all','全部句子','All sentences',cardsIn('all'));
+    const weak=cardsIn('weak');
+    h+=`<button class="folder" data-act="folder" data-id="weak" aria-current="${ui.folder==='weak'}"><span class="count">${weak.length}</span><span style="min-width:0"><span class="fname">不熟清單</span><span class="fsub">Needs practice</span></span><span class="pct"></span></button>`;
+    h+=`<p class="sec">每日課程</p>`;
+    if(!daily.length) h+=`<p class="sec-empty">還沒有課程。每天早上排程上完課，新的一天會自動加在這裡。</p>`;
+    const shown=ui.allDays?daily:daily.slice(0,7);
+    shown.forEach((d,i)=>{h+=folderBtn(d.f,'Day '+d.day+(d===daily[0]?'・最新':''),d.date+' · '+d.items.length+' 個用法',cardsIn(d.f));});
+    if(daily.length>7) h+=`<button class="more" data-act="allDays">${ui.allDays?'只顯示最近 7 天':'顯示全部 '+daily.length+' 天'}</button>`;
+    h+=`<p class="sec">我的資料夾</p>`;
+    myFolders().forEach(f=>{h+=folderBtn(f.id,f.zh,f.en||'我的資料夾',cardsIn(f.id));});
+    h+=`</div>`;
+  }
+  h+=syncHTML();
+  side.innerHTML=h;
+  if(ui.addingFolder){const inp=document.getElementById('newFolderName'); if(inp) inp.focus();}
+}
+function folderTitle(){
+  if(ui.folder==='all') return ['All sentences','全部句子'];
+  if(ui.folder==='weak') return ['Needs practice','不熟清單'];
+  const f=folderById(ui.folder); return f?[f.custom?(f.en||'My folder'):f.en,f.zh]:['',''];
+}
+function importBanner(){
+  if(!ui.importing) return '';
+  const s=ui.importing;
+  return `<div class="banner"><p>要用備份檔取代目前的資料嗎？檔案裡有 ${s.cards.length} 個自訂句子、${Object.keys(s.progress).length} 筆練習紀錄。</p><div class="row"><button class="btn primary" data-act="importYes">取代</button><button class="btn" data-act="importNo">取消</button></div></div>`;
+}
+function renderLib(){
+  const [en,zh]=folderTitle();
+  const base=cardsIn(ui.folder);
+  const cnt={all:base.length,new:0,weak:0,known:0}; base.forEach(c=>{const l=lvl(c.id); cnt[l===0?'new':l===1?'weak':'known']++;});
+  const q=ui.q.trim().toLowerCase();
+  let list=base.filter(c=>ui.filter==='all'||(ui.filter==='new'&&lvl(c.id)===0)||(ui.filter==='weak'&&lvl(c.id)===1)||(ui.filter==='known'&&lvl(c.id)===2));
+  if(q) list=list.filter(c=>(c.en+' '+c.zh+' '+c.note).toLowerCase().includes(q));
+  const cur=folderById(ui.folder);
+  let h=importBanner();
+  h+=`<div class="main-head"><div><p class="eyebrow">${esc(en)}</p><h1>${esc(zh)}</h1></div><div class="row">`;
+  if(cur&&cur.custom) h+=`<button class="btn ${ui.pendingFolderDel?'danger':'ghost'}" data-act="delFolder">${ui.pendingFolderDel?'確定刪除資料夾和裡面的句子':'刪除資料夾'}</button>`;
+  h+=`<button class="btn primary" data-act="add">${I.plus}新增句子</button></div></div>`;
+  h+=`<div class="toolbar"><label class="search">${I.search}<input id="q" type="search" placeholder="搜尋英文、中文或關鍵字" value="${esc(ui.q)}" aria-label="搜尋句子"></label><div class="chips">`;
+  [['all','全部'],['new','未練習'],['weak','不熟'],['known','會了']].forEach(([k,l])=>{h+=`<button class="chip" data-act="filter" data-id="${k}" aria-pressed="${ui.filter===k}">${l}<b>${cnt[k]}</b></button>`;});
+  h+=`</div></div>`;
+  if(ui.adding){
+    const target=folderById(ui.folder)?ui.folder:'mine';
+    const opts=myFolders().concat(dayFolders()).map(f=>`<option value="${esc(f.id)}" ${f.id===target?'selected':''}>${esc(f.zh)}</option>`).join('');
+    h+=`<form class="form" data-form="card">
+      <label>英文句子<textarea id="newEn" required placeholder="例：Could you share the meeting notes with me?"></textarea></label>
+      <label>中文意思<input id="newZh" placeholder="例：可以把會議記錄分享給我嗎？"></label>
+      <div class="row" style="align-items:stretch"><label style="flex:2 1 220px">備註或使用情境（選填）<input id="newNote" placeholder="例：會議後跟同事要資料"></label>
+      <label style="flex:1 1 160px">放進資料夾<select id="newFolder">${opts}</select></label></div>
+      <div class="row"><button class="btn primary" type="submit">儲存句子</button><button class="btn" type="button" data-act="cancelAdd">取消</button></div></form>`;
+  }
+  if(!list.length){
+    const noFilter=!q&&ui.filter==='all';
+    const msg=ui.folder==='weak'&&noFilter?'還沒有標成「不熟」的句子。在句庫或翻卡時按「不熟」，句子就會出現在這裡。'
+      :ui.folder==='all'&&noFilter?'還沒有句子。每天早上排程上完課，當天的用法和例句會自動加進來；也可以按「新增句子」自己加。'
+      :noFilter?'這個資料夾還沒有句子，按「新增句子」加第一句。':'沒有符合的句子。換個關鍵字或篩選條件試試看。';
+    h+=`<div class="empty">${msg}</div>`;
+  } else {
+    h+=`<div class="cards">`;
+    list.forEach(c=>{
+      const l=lvl(c.id), f=folderById(c.f);
+      h+=`<article class="card"><div class="card-top">${(ui.folder==='all'||ui.folder==='weak')&&f?`<span class="tag">${esc(f.zh)}</span>`:''}${c.custom?'<span class="tag">我新增的</span>':''}<span class="pill l${l}">${LV[l]}</span></div>
+        <p class="en" lang="en">${esc(c.en)}</p>${c.zh?`<p class="zh">${esc(c.zh)}</p>`:''}${c.note?`<p class="note">${esc(c.note)}</p>`:''}${c.tip?`<p class="note tip">小提醒：${esc(c.tip)}</p>`:''}
+        <div class="card-actions"><button class="btn" data-act="speak" data-id="${esc(c.id)}">${I.speak}朗讀</button>
+        <button class="btn ${l===1?'sel-weak':''}" data-act="lvl" data-l="1" data-id="${esc(c.id)}" aria-pressed="${l===1}">不熟</button>
+        <button class="btn ${l===2?'sel-good':''}" data-act="lvl" data-l="2" data-id="${esc(c.id)}" aria-pressed="${l===2}">會了</button>
+        ${c.custom?`<button class="btn ${ui.pendingDel===c.id?'danger':'ghost'}" data-act="del" data-id="${esc(c.id)}">${ui.pendingDel===c.id?'確定刪除？':'刪除'}</button>`:''}</div></article>`;
+    });
+    h+=`</div>`;
+  }
+  const qEl=document.getElementById('q'); const hadFocus=qEl&&document.activeElement===qEl; const pos=hadFocus?qEl.selectionStart:0;
+  main.innerHTML=h;
+  if(hadFocus){const n=document.getElementById('q'); n.focus(); try{n.setSelectionRange(pos,pos)}catch(e){}}
+  if(ui.adding&&!hadFocus){const n=document.getElementById('newEn'); if(n&&document.activeElement!==n&&!n.value) n.focus();}
+}
+
+/* 翻卡 */
+function renderFlash(){
+  const [en,zh]=folderTitle(); const base=cardsIn(ui.folder);
+  if(flash.key!==ui.folder){flash.active=false; flash.key=ui.folder; flash.queue=[]; flash.i=0;}
+  let h=importBanner()+`<div class="main-head"><div><p class="eyebrow">Flashcards · ${esc(en)}</p><h1>${esc(zh)}</h1></div>
+    <div class="seg" role="group" aria-label="翻卡方向"><button data-act="dir" data-id="zh2en" aria-pressed="${ui.dir==='zh2en'}">看中文說英文</button><button data-act="dir" data-id="en2zh" aria-pressed="${ui.dir==='en2zh'}">看英文想中文</button></div></div>`;
+  if(!flash.active){
+    const w=base.filter(c=>lvl(c.id)===1).length, n=base.filter(c=>lvl(c.id)===0).length;
+    h+=`<div class="flash">`;
+    if(!base.length){h+=`<p class="q">這個資料夾還沒有句子</p><p class="hint">從左邊選一個有句子的資料夾，或先到「句庫」新增。</p>`;}
+    else if(flash.queue.length&&flash.i>=flash.queue.length){
+      h+=`<p class="q">這輪練完了</p><div class="summary"><div class="w"><b>${flash.res[1]}</b>不熟</div><div class="g"><b>${flash.res[2]}</b>會了</div></div>
+        <div class="row" style="justify-content:center"><button class="btn primary big-btn" data-act="startFlash">再練一輪</button>${flash.res[1]?`<button class="btn big-btn" data-act="goWeak">只練不熟的</button>`:''}</div>`;
+    } else {
+      h+=`<p class="q">${Math.min(20,base.length)} 張卡片</p><p class="hint">會優先出「不熟」（${w} 句），再來是還沒練過的（${n} 句）。</p>
+        <button class="btn primary big-btn" data-act="startFlash">開始練習</button>
+        <p class="hint"><kbd>空白鍵</kbd> 翻面　<kbd>1</kbd> 不熟　<kbd>2</kbd> 會了　<kbd>V</kbd> 朗讀</p>`;
+    }
+    h+=`</div>`;
+  } else {
+    const c=flash.queue[flash.i]; const total=flash.queue.length;
+    const front=ui.dir==='zh2en'?(c.zh||c.en):c.en, back=ui.dir==='zh2en'?c.en:(c.zh||'');
+    const frontLang=ui.dir==='zh2en'&&c.zh?'zh-Hant':'en', backLang=ui.dir==='zh2en'?'en':'zh-Hant';
+    h+=`<div class="progress"><div class="bar"><i style="width:${flash.i/total*100}%"></i></div><span>${flash.i+1} / ${total}</span></div>
+      <div class="flash"><p class="hint">${ui.dir==='zh2en'?'先用英文說說看，再翻面':'這句是什麼意思？'}</p>
+      <p class="q" lang="${frontLang}">${esc(front)}</p>`;
+    if(flash.revealed){
+      h+=`<p class="a" lang="${backLang}">${esc(back)}</p>${c.note?`<p class="note">${esc(c.note)}</p>`:''}${c.tip?`<p class="note tip">小提醒：${esc(c.tip)}</p>`:''}
+        <div class="row" style="justify-content:center"><button class="btn" data-act="speak" data-id="${esc(c.id)}">${I.speak}朗讀</button></div>
+        <div class="row" style="justify-content:center"><button class="btn big-btn sel-weak" data-act="mark" data-l="1">不熟 <kbd>1</kbd></button><button class="btn big-btn sel-good" data-act="mark" data-l="2">會了 <kbd>2</kbd></button></div>`;
+    } else {
+      h+=`<button class="btn primary big-btn" data-act="reveal">翻面看答案 <kbd>空白鍵</kbd></button>`;
+    }
+    h+=`</div><div class="row"><button class="btn ghost" data-act="stopFlash">結束這輪</button></div>`;
+  }
+  main.innerHTML=h;
+}
+function startFlash(){
+  const base=cardsIn(ui.folder); const g={0:[],1:[],2:[]}; base.forEach(c=>g[lvl(c.id)].push(c));
+  flash.queue=[...shuffle(g[1]),...shuffle(g[0]),...shuffle(g[2])].slice(0,20);
+  flash.i=0; flash.revealed=false; flash.res={1:0,2:0}; flash.active=flash.queue.length>0; flash.key=ui.folder;
+  render();
+}
+function markFlash(l){
+  const c=flash.queue[flash.i]; if(!c) return;
+  state.progress[c.id]=l; flash.res[l]++; persist();
+  flash.i++; flash.revealed=false;
+  if(flash.i>=flash.queue.length) flash.active=false;
+  render();
+}
+
+/* Email 填空 */
+function norm(s){
+  return s.toLowerCase().replace(/[’‘]/g,"'").replace(/\bi'm\b/g,'i am').replace(/won't/g,'will not').replace(/can't/g,'can not').replace(/n't\b/g,' not')
+    .replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will').replace(/'d\b/g,' would').replace(/\b(it|that|here|what)'s\b/g,'$1 is')
+    .replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+function lcs(a,b){const d=Array(b.length+1).fill(0); for(let i=1;i<=a.length;i++){let prev=0; for(let j=1;j<=b.length;j++){const t=d[j]; d[j]=a[i-1]===b[j-1]?prev+1:Math.max(d[j],d[j-1]); prev=t;}} return d[b.length];}
+function grade(input,ans){
+  const a=norm(input||''), b=norm(ans); if(!a) return 'miss'; if(a===b) return 'ok';
+  const aw=a.split(' '), bw=b.split(' '); return lcs(aw,bw)/Math.max(aw.length,bw.length)>=0.6?'close':'miss';
+}
+function draft(id){return drafts[id]||(drafts[id]={vals:[],graded:null,full:false});}
+function fullText(m){return m.parts.map(p=>p.t==='b'?p.ans:p.t==='p'?'['+p.v+']':p.v).join('');}
+function renderMail(){
+  const ems=allEmails();
+  if(!ems.length){main.innerHTML=importBanner()+`<div class="main-head"><div><p class="eyebrow">Email practice</p><h1>Email 填空</h1></div></div><div class="empty">還沒有練習信。每天排程上完課，當天的「今日小練習」會變成一封填空信放在這裡。</div>`;return;}
+  let idx=ems.findIndex(m=>m.id===ui.mail); if(idx<0){idx=0; ui.mail=ems[0].id;}
+  const m=ems[idx]; const d=draft(m.id);
+  let h=importBanner()+`<div class="main-head"><div><p class="eyebrow">Day ${m.day} · ${esc(m.en)}</p><h1>${esc(m.zh)}</h1></div></div>
+    <div class="situation"><b>SITUATION</b><p>${esc(m.situation)}</p></div>`;
+  if(d.graded){
+    const c={ok:0,close:0,miss:0}; d.graded.forEach(g=>c[g]++);
+    h+=`<div class="score"><span class="s-ok">完全正確 ${c.ok}</span><span class="s-close">意思接近 ${c.close}</span><span class="s-miss">再加油 ${c.miss}</span></div>`;
+  } else h+=`<p class="hint">把中文提示換成英文填進空格，寫完按「對答案」。[方括號] 是寄信時換成你自己的資料。</p>`;
+  h+=`<div class="mail"><div class="mail-row"><span>To</span><span>${esc(m.to)}</span></div><div class="mail-row"><span>Subject</span><span lang="en">${esc(m.subject)}</span></div><div class="mail-body" lang="en">`;
+  m.parts.forEach(p=>{
+    if(p.t==='x') h+=esc(p.v);
+    else if(p.t==='p') h+=`<span class="ph">${esc(p.v)}</span>`;
+    else {
+      const g=d.graded?d.graded[p.i]:''; const w=Math.max(p.ans.length,p.hint.length*2)+3;
+      h+=`<input class="blank ${g}" data-blank="${p.i}" aria-label="空格 ${p.i+1}：${esc(p.hint)}" placeholder="${esc(p.hint)}" value="${esc(d.vals[p.i]||'')}" style="width:min(${w}ch,100%)" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+      if(g&&g!=='ok') h+=`<span class="ans ${g}">${g==='close'?'範本：':'答案：'}${esc(p.ans)}</span>`;
+    }
+  });
+  h+=`</div></div><div class="row"><button class="btn primary" data-act="check">對答案</button><button class="btn" data-act="toggleFull">${d.full?'收起範本':'看完整範本'}</button><button class="btn" data-act="speakMail">${I.speak}朗讀範本</button><button class="btn ghost" data-act="resetMail">清空重寫</button>
+    ${idx<ems.length-1?`<button class="btn ghost" data-act="mail" data-id="${esc(ems[idx+1].id)}">上一天 →</button>`:''}</div>`;
+  if(d.full){
+    let t=''; m.parts.forEach(p=>{t+=p.t==='b'?`<mark>${esc(p.ans)}</mark>`:p.t==='p'?`<span class="ph">${esc(p.v)}</span>`:esc(p.v);});
+    h+=`<div class="mail full"><div class="mail-row"><span>範本</span><span><button class="btn" data-act="copyMail">${I.copy}複製整封</button></span></div><div class="mail-body" lang="en">${t}</div></div>`;
+  }
+  main.innerHTML=h;
+}
+function checkMail(){
+  const m=allEmails().find(x=>x.id===ui.mail); if(!m) return; const d=draft(m.id);
+  d.graded=m.blanks.map(b=>grade(d.vals[b.i],b.ans));
+  const ok=d.graded.filter(g=>g==='ok').length, close=d.graded.filter(g=>g==='close').length;
+  const prev=state.emails[m.id];
+  if(!prev||ok+close*.5>=prev.ok+prev.close*.5){state.emails[m.id]={ok,close,total:m.blanks.length}; persist();}
+  render();
+}
+
+/* 匯出／匯入 */
+async function doExport(){
+  const json=JSON.stringify({app:'intern-english',v:1,exportedAt:new Date().toISOString(),data:state},null,2);
+  const name='intern-english-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  if(dlCap){
+    try{await dlCap.save({filename:name,data:json}); toast('已匯出備份檔'); return;}
+    catch(e){ if(e&&e.code==='declined'){toast('已取消匯出');return;} }
+  }
+  if(!window.claude){
+    try{const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([json],{type:'application/json'})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); toast('已匯出備份檔'); return;}catch(e){}
+  }
+  showModal('匯出備份','這裡沒辦法直接下載檔案。請複製下面的內容，貼到記事本存成 .json 檔，之後可以用「匯入」還原。',json);
+}
+function showModal(title,text,content){
+  const host=document.getElementById('modalHost');
+  host.innerHTML=`<div class="modal" data-act="closeModal"><div class="modal-box" role="dialog" aria-modal="true" aria-label="${esc(title)}"><h3>${esc(title)}</h3><p class="hint">${esc(text)}</p><textarea id="modalText" readonly>${esc(content)}</textarea><div class="row"><button class="btn primary" data-act="copyModal">${I.copy}複製</button><button class="btn" data-act="closeModal">關閉</button></div></div></div>`;
+}
+function copyText(text,fallbackEl){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>toast('已複製')).catch(()=>{ if(fallbackEl){fallbackEl.focus(); fallbackEl.select(); toast('請按 ⌘C / Ctrl+C 複製');} else showModal('複製範本','請選取下面的文字手動複製。',text); });
+  } else if(fallbackEl){fallbackEl.select(); toast('請按 ⌘C / Ctrl+C 複製');} else showModal('複製範本','請選取下面的文字手動複製。',text);
+}
+let toastT=null;
+function toast(msg){const h=document.getElementById('toastHost'); h.innerHTML=`<div class="toast" role="status">${esc(msg)}</div>`; clearTimeout(toastT); toastT=setTimeout(()=>{h.innerHTML=''},2200);}
+
+/* ---------------- 事件 ---------------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act]'); if(!t) return;
+  const act=t.dataset.act, id=t.dataset.id;
+  if(act==='closeModal'){ if(e.target===t||t.tagName==='BUTTON') document.getElementById('modalHost').innerHTML=''; return; }
+  if(act!=='del') ui.pendingDel=null;
+  if(act!=='delFolder') ui.pendingFolderDel=false;
+  switch(act){
+    case 'folder': ui.folder=id; ui.filter='all'; ui.adding=false; break;
+    case 'mail': ui.mail=id; window.scrollTo({top:0,behavior:'smooth'}); break;
+    case 'addFolder': ui.addingFolder=!ui.addingFolder; break;
+    case 'add': ui.adding=!ui.adding; break;
+    case 'cancelAdd': ui.adding=false; break;
+    case 'filter': ui.filter=id; break;
+    case 'speak': {const c=allCards().find(x=>x.id===id); if(c) speak(c.en); return;}
+    case 'lvl': {const l=+t.dataset.l; if(lvl(id)===l) delete state.progress[id]; else state.progress[id]=l; persist(); break;}
+    case 'del':
+      if(ui.pendingDel===id){state.cards=state.cards.filter(c=>c.id!==id); delete state.progress[id]; ui.pendingDel=null; persist(); toast('已刪除');}
+      else ui.pendingDel=id; break;
+    case 'delFolder':
+      if(ui.pendingFolderDel){const fid=ui.folder; state.cards.filter(c=>c.f===fid).forEach(c=>delete state.progress[c.id]); state.cards=state.cards.filter(c=>c.f!==fid); state.folders=state.folders.filter(f=>f.id!==fid); ui.folder='all'; ui.pendingFolderDel=false; persist(); toast('已刪除資料夾');}
+      else ui.pendingFolderDel=true; break;
+    case 'dir': ui.dir=id; savePrefs(); if(flash.active) flash.revealed=false; break;
+    case 'startFlash': startFlash(); return;
+    case 'goWeak': ui.folder='weak'; flash.key='weak'; startFlash(); return;
+    case 'stopFlash': flash.active=false; flash.queue=[]; break;
+    case 'reveal': flash.revealed=true; break;
+    case 'mark': markFlash(+t.dataset.l); return;
+    case 'check': checkMail(); return;
+    case 'toggleFull': draft(ui.mail).full=!draft(ui.mail).full; break;
+    case 'resetMail': drafts[ui.mail]={vals:[],graded:null,full:false}; break;
+    case 'speakMail': {const m=allEmails().find(x=>x.id===ui.mail); if(m) speak(fullText(m)); return;}
+    case 'copyMail': {const m=allEmails().find(x=>x.id===ui.mail); if(m) copyText(fullText(m)); return;}
+    case 'allDays': ui.allDays=!ui.allDays; break;
+    case 'copyModal': copyText(document.getElementById('modalText').value,document.getElementById('modalText')); return;
+    case 'importYes': state=ui.importing; ui.importing=null; persist(); toast('已匯入備份'); break;
+    case 'importNo': ui.importing=null; break;
+  }
+  render();
+});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{ui.mode=t.dataset.mode; ui.adding=false; if(ui.mode!=='lib'&&ui.mode!=='flash') ui.addingFolder=false; savePrefs(); render();}));
+document.getElementById('rateBtn').addEventListener('click',()=>{ui.rate=ui.rate===1?0.8:1; savePrefs(); render(); toast(ui.rate===1?'正常語速':'放慢語速');});
+document.getElementById('exportBtn').addEventListener('click',doExport);
+document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());
+document.getElementById('importFile').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{const o=JSON.parse(r.result); if(!o||o.app!=='intern-english'||!o.data) throw 0; ui.importing=normalize(o.data); ui.importing.updatedAt=Date.now(); render(); window.scrollTo({top:0,behavior:'smooth'});}catch(err){toast('這不是這個網站匯出的備份檔');} };
+  r.readAsText(f); e.target.value='';
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='q'){ui.q=e.target.value; render(); return;}
+  if(e.target.dataset&&e.target.dataset.blank!==undefined){draft(ui.mail).vals[+e.target.dataset.blank]=e.target.value;}
+});
+document.addEventListener('keydown',e=>{
+  if(e.target.classList&&e.target.classList.contains('blank')&&e.key==='Enter'){
+    e.preventDefault(); const all=[...document.querySelectorAll('.blank')]; const i=all.indexOf(e.target);
+    if(i<all.length-1) all[i+1].focus(); else checkMail(); return;
+  }
+  if(e.key==='Escape'&&document.getElementById('modalHost').innerHTML){document.getElementById('modalHost').innerHTML='';return;}
+  if(ui.mode!=='flash'||!flash.active) return;
+  if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')) return;
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  if(e.key===' '||e.key==='Enter'){ if(!flash.revealed){e.preventDefault(); flash.revealed=true; render();} }
+  else if(flash.revealed&&(e.key==='1'||e.key==='2')) markFlash(+e.key);
+  else if(e.key==='v'||e.key==='V'){const c=flash.queue[flash.i]; if(c) speak(c.en);}
+});
+document.addEventListener('submit',e=>{
+  e.preventDefault();
+  const form=e.target.dataset.form;
+  if(form==='folder'){
+    const name=document.getElementById('newFolderName').value.trim(); if(!name) return;
+    const id=uid('u'); state.folders.push({id,zh:name.slice(0,40),en:''}); ui.addingFolder=false; ui.folder=id; ui.mode=ui.mode==='mail'?'lib':ui.mode; persist(); render(); toast('已新增資料夾');
+  } else if(form==='card'){
+    const en=document.getElementById('newEn').value.trim(); if(!en){toast('請先輸入英文句子');return;}
+    const c={id:uid('c'),f:document.getElementById('newFolder').value,en:en.slice(0,600),zh:document.getElementById('newZh').value.trim().slice(0,600),note:document.getElementById('newNote').value.trim().slice(0,300)};
+    state.cards.unshift(c); ui.adding=false; ui.filter='all'; if(ui.folder!=='all'&&ui.folder!==c.f) ui.folder=c.f; persist(); render(); toast('已加入句庫');
+  }
+});
+
+loadLocal();
+setDaily(DEMO_DAILY);
+render();
+</script>
+
+</body></html>
